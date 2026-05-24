@@ -26,11 +26,10 @@
         .header-title-container { display: flex; align-items: center; gap: 10px; }
         header h1 { font-size: 1.25rem; letter-spacing: 1px; background: linear-gradient(45deg, #ffd700, #ffea00, #dcdcdc, #b8860b, #ffffff); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 6s ease infinite; font-weight: bold; }
         
-        /* تصميم زر البحث الجديد */
-        .search-container { display: flex; align-items: center; gap: 10px; background: #111; padding: 5px 10px; border-radius: 20px; border: 1px solid #333; }
-        .search-container input { background: transparent; border: none; color: white; outline: none; width: 120px; text-align: right; }
-        .search-btn { cursor: pointer; border: none; background: none; }
-        .search-btn img { width: 25px; height: 25px; }
+        /* تصميم حقل البحث */
+        .search-container { display: flex; align-items: center; background: #111; padding: 5px 10px; border-radius: 8px; border: 1px solid #333; }
+        .search-container input { background: transparent; border: none; color: white; padding: 5px; outline: none; width: 120px; }
+        .search-icon { width: 25px; height: 25px; cursor: pointer; }
 
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
@@ -56,41 +55,55 @@
             <h1>GLITCH FREE FIRE</h1>
         </div>
         <div class="search-container">
-            <input type="text" placeholder="بحث عن قلتش...">
-            <button class="search-btn">
-                <img src="https://images.icon-icons.com/1206/PNG/96/1491254410-searchfinddetailzoom_82949.png" alt="بحث">
-            </button>
+            <input type="text" id="searchInput" placeholder="ابحث عن قلتش...">
+            <img src="https://images.icon-icons.com/1206/PNG/96/1491254410-searchfinddetailzoom_82949.png" class="search-icon" alt="بحث">
         </div>
     </header>
 
     <div class="container">
-        <div class="apps-grid" id="apps-container">
-        </div>
+        <div class="apps-grid" id="apps-container"></div>
         <p class="update-notice">سوف يتم تحديث قلتشات تلقائيا</p>
     </div>
 
     <script>
+        let allApps = [];
+
         fetch('items.json')
             .then(response => response.json())
             .then(data => {
-                const container = document.getElementById('apps-container');
-                data.forEach(app => {
-                    container.innerHTML += `
-                    <div class="app-card">
-                        <div class="app-info">
-                            <div class="app-icon"><img src="${app.icon}" alt=""></div>
-                            <div class="app-details">
-                                <h3 style="color: #00ff00;">${app.name}</h3>
-                                <span>تحديث جديد</span>
-                            </div>
-                        </div>
-                        <p class="app-desc">${app.desc}</p>
-                        <a href="${app.link}" target="_blank" class="btn-download">
-                            <img src="https://images.icon-icons.com/1875/PNG/96/download_120262.png" alt="تحميل" style="width: 30px; height: 30px;">
-                        </a>
-                    </div>`;
-                });
+                allApps = data;
+                renderApps(allApps);
             });
+
+        function renderApps(apps) {
+            const container = document.getElementById('apps-container');
+            container.innerHTML = '';
+            apps.forEach(app => {
+                container.innerHTML += `
+                <div class="app-card">
+                    <div class="app-info">
+                        <div class="app-icon"><img src="${app.icon}" alt=""></div>
+                        <div class="app-details">
+                            <h3 style="color: #00ff00;">${app.name}</h3>
+                            <span>تحديث جديد</span>
+                        </div>
+                    </div>
+                    <p class="app-desc">${app.desc}</p>
+                    <a href="${app.link}" target="_blank" class="btn-download">
+                        <img src="https://images.icon-icons.com/1875/PNG/96/download_120262.png" alt="تحميل" style="width: 30px; height: 30px;">
+                    </a>
+                </div>`;
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = allApps.filter(app => 
+                app.name.toLowerCase().includes(searchTerm) || 
+                app.desc.toLowerCase().includes(searchTerm)
+            );
+            renderApps(filtered);
+        });
     </script>
 </body>
 </html>
