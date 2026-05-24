@@ -1,42 +1,49 @@
-// مصفوفة لتخزين البيانات المجلوبة من السيرفر
+// مصفوفة لتخزين البيانات
 let itemsData = [];
 
-// 1. دالة جلب البيانات من ملف الـ JSON مع منع الكاش
+// دالة جلب البيانات باستخدام رابط مباشر ومحدد زمني لمنع الكاش تماماً
 async function loadItems() {
     try {
-        // إضافة محدد زمني عشوائي لمنع المتصفح من كاش الملف المحدث
-        const response = await fetch(`items.json?v=${new Date().getTime()}`);
+        // استخدمنا رابطاً نسبياً مع طابع زمني ديناميكي يضمن جلب أحدث ملف items.json رفعته
+        const timestamp = new Date().getTime();
+        const response = await fetch(`items.json?update=${timestamp}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         itemsData = await response.json();
         
-        // عرض العناصر لأول مرة بعد جلبها بنجاح
+        // عرض البيانات فوراً بعد جلبها
         displayItems(itemsData);
     } catch (error) {
-        console.error("خطأ في جلب البيانات:", error);
+        console.error("خطأ أثناء جلب ملف البيانات JSON:", error);
+        // خطة بديلة: إذا فشل جلب الملف لأي سبب، يتم إظهار رسالة تنبيهية للمطور في الكونسول
     }
 }
 
-// 2. دالة عرض العناصر داخل الـ Grid في صفحة الـ HTML
+// دالة بناء الكروت وعرضها داخل الواجهة
 function displayItems(items) {
     const container = document.getElementById('itemsContainer');
     if (!container) return;
 
-    // تنظيف الحاوية أولاً قبل عرض العناصر الجديدة
     container.innerHTML = '';
 
-    // في حال عدم العثور على أي عنصر يطابق البحث
-    if (items.length === 0) {
-        container.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #888; font-weight: 700;">لم يتم العثور على نتائج</p>';
+    // إذا كانت المصفوفة فارغة
+    if (!items || items.length === 0) {
+        container.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #888; font-weight: 700; font-family: \'Cairo\', sans-serif;">لم يتم العثور على أي عناصر...</p>';
         return;
     }
 
-    // بناء الكروت للعناصر الممررة
+    // توليد كروت العناصر بناءً على البيانات الجديدة
     items.forEach(item => {
         const card = document.createElement('div');
         card.className = 'item-card';
 
+        // الروابط تعتمد على مستودع الصور المباشر بدقة مع معالجة حماية الصور المكسورة
         card.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" onerror="this.src='https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/102000004.png'">
-            <div class="item-name">${item.name}</div>
+            <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/102000004.png';">
+            <div class="item-name" style="font-weight: 900;">${item.name}</div>
             <div class="item-id">ID: ${item.id}</div>
         `;
 
@@ -44,7 +51,7 @@ function displayItems(items) {
     });
 }
 
-// 3. دالة الفلترة والبحث المشترك (تصفية حية)
+// دالة التصفية الحية والبحث المشترك (بالاسم أو المعرّف)
 function filterItems() {
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
@@ -54,35 +61,23 @@ function filterItems() {
     const query = searchInput.value.toLowerCase().trim();
     const selectedCategory = categoryFilter.value;
 
-    // تصفية المصفوفة الأصلية بناءً على المدخلات
     const filtered = itemsData.filter(item => {
-        // التحقق من المطابقة مع الاسم أو الـ ID
         const matchesSearch = item.name.toLowerCase().includes(query) || item.id.toString().includes(query);
-        // التحقق من مطابقة التصنيف
         const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
-
         return matchesSearch && matchesCategory;
     });
 
-    // تحديث الواجهة بالعناصر المفلترة فقط
     displayItems(filtered);
 }
 
-// 4. ربط الأحداث وتشغيل الدالة عند تحميل الصفحة بالكامل
+// ربط المستمعات وتشغيل السكريبت فور تحميل الواجهة
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
 
-    // تشغيل الفلترة الحية عند الكتابة في حقل البحث
-    if (searchInput) {
-        searchInput.addEventListener('input', filterItems);
-    }
+    if (searchInput) searchInput.addEventListener('input', filterItems);
+    if (categoryFilter) categoryFilter.addEventListener('change', filterItems);
 
-    // تشغيل الفلترة الحية عند تغيير تصنيف القائمة المنسدلة
-    if (categoryFilter) {
-        categoryFilter.addEventListener('change', filterItems);
-    }
-
-    // استدعاء دالة جلب البيانات الأساسية للبدء
+    // تشغيل الجلب الفوري
     loadItems();
 });
