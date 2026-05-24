@@ -1,74 +1,39 @@
-let itemsData = [];
+// الدالة المسؤولة عن جلب بيانات العناصر وعرض صورها أونلاين
+async function loadFreeFireItems() {
+  try {
+    // 1. جلب ملف الـ JSON الذي يحتوي على المعرفات والأسماء
+    const response = await fetch('items.json');
+    const items = await response.json();
+    
+    // 2. تحديد الحاوية داخل الـ HTML التي ستعرض الكروت
+    const container = document.getElementById('items-container');
+    container.innerHTML = ''; // تنظيف الحاوية قبل العرض
 
-async function loadItems() {
-    try {
-        const nocache = new Date().getTime();
-        const response = await fetch(`items.json?v=${nocache}`);
-        
-        if (!response.ok) {
-            throw new Error('تعذر جلب ملف الـ JSON');
-        }
-        
-        itemsData = await response.json();
-        displayItems(itemsData);
-    } catch (error) {
-        console.error("خطأ:", error);
-        const container = document.getElementById('itemsContainer');
-        if (container) {
-            container.innerHTML = `<p style="text-align: center; grid-column: 1/-1; color: #ff3e3e; font-weight: 900;">خطأ في قراءة بيانات ملف items.json</p>`;
-        }
-    }
-}
-
-function displayItems(items) {
-    const container = document.getElementById('itemsContainer');
-    if (!container) return;
-
-    container.innerHTML = '';
-
-    if (!items || items.length === 0) {
-        container.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #888; font-weight: 900;">لم يتم العثور على نتائج متطابقة</p>';
-        return;
-    }
-
+    // 3. التكرار بناءً على مصفوفتك لجلب وعرض الصور ديناميكياً
     items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'item-card';
-        const defaultImg = 'https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/102000004.png';
+      // تركيب الرابط المباشر لكل صورة باستخدام الـ ID الخاص بها
+      const imageUrl = `https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/${item.id}.png`;
 
-        card.innerHTML = `
-            <img src="${item.image || defaultImg}" alt="${item.name}" onerror="this.onerror=null; this.src='${defaultImg}';">
-            <div class="item-name">${item.name || 'عنصر غير مسمى'}</div>
-            <div class="item-id">ID: ${item.id || '000000'}</div>
-        `;
-        container.appendChild(card);
+      // إنشاء الهيكل البرمجي المخصص لكارت العنصر
+      const itemCard = document.createElement('div');
+      itemCard.className = 'item-card'; // كلاس التنسيق (CSS)
+
+      itemCard.innerHTML = `
+        <div class="image-wrapper">
+          <img src="${imageUrl}" alt="${item.name}" loading="lazy">
+        </div>
+        <h3 class="item-name">${item.name}</h3>
+        <span class="item-id">ID: ${item.id}</span>
+      `;
+
+      // إضافة الكارت إلى صفحة الموقع
+      container.appendChild(itemCard);
     });
+    
+  } catch (error) {
+    console.error('حدث خطأ أثناء جلب البيانات أو تحميل الصور:', error);
+  }
 }
 
-function filterItems() {
-    const query = document.getElementById('searchInput').value.toLowerCase().trim();
-    const selectedCategory = document.getElementById('categoryFilter').value;
-
-    const filtered = itemsData.filter(item => {
-        const itemName = (item.name || '').toLowerCase();
-        const itemId = (item.id || '').toString();
-        const matchesSearch = itemName.includes(query) || itemId.includes(query);
-
-        const itemCat = (item.category || '').toLowerCase();
-        const matchesCategory = selectedCategory === 'all' || itemCat === selectedCategory;
-
-        return matchesSearch && matchesCategory;
-    });
-
-    displayItems(filtered);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
-
-    if (searchInput) searchInput.addEventListener('input', filterItems);
-    if (categoryFilter) categoryFilter.addEventListener('change', filterItems);
-
-    loadItems();
-});
+// تشغيل الدالة تلقائياً بمجرد تحميل الصفحة بالكامل
+document.addEventListener('DOMContentLoaded', loadFreeFireItems);
