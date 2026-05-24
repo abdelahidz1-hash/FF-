@@ -1,0 +1,23 @@
+[
+  {
+    "id": "10001",
+    "name": "Alok Character",
+    "category": "characters",
+    "image": "https://via.placeholder.com/150",
+    "rarity": "epic"
+  },
+  {
+    "id": "20002",
+    "name": "AK47 - Blue Flame Draco",
+    "category": "weapons",
+    "image": "https://via.placeholder.com/150",
+    "rarity": "mythic"
+  },
+  {
+    "id": "30003",
+    "name": "Criminal Bundle (Red)",
+    "category": "bundles",
+    "image": "https://via.placeholder.com/150",
+    "rarity": "mythic"
+  }
+]
