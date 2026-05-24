@@ -1,7 +1,7 @@
 // الدالة المسؤولة عن جلب بيانات العناصر وعرض صورها أونلاين
 async function loadFreeFireItems() {
   try {
-    // 1. جلب ملف الـ JSON الذي يحتوي على المعرفات والأسماء
+    // 1. جلب ملف الـ JSON الذي يحتوي على المعرفات والأسماء والروابط
     const response = await fetch('items.json');
     const items = await response.json();
     
@@ -11,8 +11,8 @@ async function loadFreeFireItems() {
 
     // 3. التكرار بناءً على مصفوفتك لجلب وعرض الصور ديناميكياً
     items.forEach(item => {
-      // تركيب الرابط المباشر لكل صورة باستخدام الـ ID الخاص بها
-      const imageUrl = `https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/${item.id}.png`;
+      // جلب رابط الصورة مباشرة من ملف الـ JSON بناءً على طلبك
+      const imageUrl = item.image || '';
 
       // إنشاء الهيكل البرمجي المخصص لكارت العنصر
       const itemCard = document.createElement('div');
