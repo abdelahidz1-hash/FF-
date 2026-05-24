@@ -1,5 +1,4 @@
-// قائمة الروابط المباشرة لجميع العناصر (80 عنصراً) قابلة للنسخ المباشر
-const freeFireImageUrls = [
+[
   "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000001.png",
   "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000005.png",
   "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000006.png",
