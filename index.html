@@ -77,14 +77,16 @@
             box-shadow: 0 5px 15px rgba(255, 62, 62, 0.1);
         }
 
-        /* تعديل أبعاد الصورة إلى 40 بكسل */
+        /* تعديل حجم الصورة والإطار المربع الذهبي والأبيض الرقيق */
         .item-card img {
-            width: 40px;
-            height: 40px;
+            width: 55px;
+            height: 55px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 8px; /* أركان دائرية */
+            border: 1.5px solid transparent; /* قاعدة للإطار المتدرج */
+            background: linear-gradient(#000, #000) padding-box, 
+                        linear-gradient(135deg, #ffffff, #ffcc00) border-box; /* إطار متدرج أبيض وذهبي رقيق */
             margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.02);
         }
 
         .item-name {
