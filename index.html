@@ -3,250 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبة عناصر فري فاير</title>
+    <title>متجر التطبيقات</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
-        /* ==========================================================================
-           1. تنسيقات التصميم والمظهر (CSS)
-           ========================================================================== */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 300;
-            box-sizing: border-box;
+        :root {
+            --bg-color: #000000;
+            --card-bg: #0b0b0b;
+            --text-color: #ffffff;
+            --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); 
+            --accent-hover: linear-gradient(45deg, #ffffff, #ffea00, #ffffff);
+            --muted-text: #888888;
         }
 
-        .wrapper {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 15px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-bottom: 60px; }
 
-        header h1 {
-            text-align: center;
-            font-size: 22px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .search-box {
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 12px 40px 12px 15px;
-            background-color: #111111;
-            border: 1px solid #252525;
-            border-radius: 25px;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-            text-align: right;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 300;
-        }
-
-        .search-box input::placeholder {
-            color: #666;
-        }
-
-        .search-icon {
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            color: #666;
-            font-size: 15px;
-        }
-
-        .filters-container {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .filters-container select {
-            flex: 1;
-            background-color: #111111;
-            color: #aaaaaa;
-            border: 1px solid #252525;
-            padding: 10px 5px;
-            border-radius: 8px;
-            font-size: 13px;
-            outline: none;
-            cursor: pointer;
-            text-align: center;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 300;
-        }
-
-        .items-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr); 
-            gap: 6px;
-        }
-
-        .item-card {
-            background-color: #050505;
-            border-radius: 6px;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-            border: 1px solid #d4af37;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-            box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.2), 0 0 5px rgba(255, 255, 255, 0.1);
-        }
-
-        .item-card:hover {
-            transform: scale(1.04);
-            border-color: #ffffff;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), inset 0 0 8px rgba(212, 175, 55, 0.5);
-        }
-
-        .img-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .item-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #d4af37 0%, #e5e4e2 50%, #ffffff 100%);
-        }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
+        .header-title-container { display: flex; align-items: center; gap: 10px; }
+        header h1 { font-size: 1.25rem; letter-spacing: 1px; background: linear-gradient(45deg, #ffd700, #ffea00, #dcdcdc, #b8860b, #ffffff); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 6s ease infinite; font-weight: bold; }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        .app-card { background-color: rgba(11, 11, 11, 0.85); border: 1px solid #151515; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+        .app-card:hover { transform: translateY(-5px); border-color: #333; }
+        .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .app-icon { width: 60px; height: 60px; background: #1a1a1a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; }
+        .app-desc { font-size: 0.9rem; color: #b3b3b3; margin-bottom: 20px; height: 45px; overflow: hidden; }
+        
+        .btn-download { background: var(--accent-color); color: var(--text-color); text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border: none; }
+        .update-notice { text-align: center; font-size: 1.1rem; margin-top: 30px; background: linear-gradient(45deg, #ffffff, #ffd700, #ff0000, #ffff00, #00ff00, #0000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s ease infinite; }
+        
+        .video-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000000; z-index: 200; display: none; justify-content: center; align-items: center; flex-direction: column; }
+        .close-video-btn { position: absolute; top: 20px; left: 20px; background: #111; padding: 8px; border-radius: 50%; cursor: pointer; border: 1px solid #333; }
+        .video-player-container { width: 100%; max-width: 360px; aspect-ratio: 9/16; background: #050505; border-radius: 12px; overflow: hidden; }
+        .video-player-container video { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <header>
-            <h1>مكتبة عناصر فري فاير</h1>
-        </header>
+    <header>
+        <div class="header-title-container">
+            <h1>GLITCH FREE FIRE</h1>
+        </div>
+    </header>
 
-        <section class="search-filter-section">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="ابحث باستخدام اسم العنصر، أو رمزه، أو معرفه...">
-                <i class="fas fa-search search-icon"></i>
+    <div class="container">
+        <div class="apps-grid" id="apps-container">
             </div>
-
-            <div class="filters-container">
-                <select id="rarityFilter">
-                    <option value="all">جميعها نادرة</option>
-                    <option value="legendary">أسطوري</option>
-                    <option value="rare">نادر</option>
-                </select>
-
-                <select id="typeFilter">
-                    <option value="all">جميع الأنواع</option>
-                    <option value="characters">شخصيات</option>
-                    <option value="skins">سكنات</option>
-                </select>
-
-                <select id="tagFilter">
-                    <option value="all">جميع الوسوم</option>
-                    <option value="new">جديد</option>
-                </select>
-            </div>
-        </section>
-
-        <main class="items-grid" id="itemsGrid"></main>
+        <p class="update-notice">سوف يتم تحديث قلتشات تلقائيا</p>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('searchInput');
-            const rarityFilter = document.getElementById('rarityFilter');
-            const typeFilter = document.getElementById('typeFilter');
-            const tagFilter = document.getElementById('tagFilter');
-            const itemsGrid = document.getElementById('itemsGrid');
-
-            fetch('items.json')
-                .then(response => response.json())
-                .then(data => {
-                    buildGrid(data);
-                    searchInput.addEventListener('input', filterItems);
-                    rarityFilter.addEventListener('change', filterItems);
-                    typeFilter.addEventListener('change', filterItems);
-                    tagFilter.addEventListener('change', filterItems);
-                })
-                .catch(error => console.error('خطأ:', error));
-
-            function buildGrid(items) {
-                itemsGrid.innerHTML = '';
-                items.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'item-card';
-                    card.setAttribute('data-name', item.name || '');
-                    card.setAttribute('data-id', item.id || '');
-                    card.setAttribute('data-type', item.type || '');
-                    card.setAttribute('data-rarity', item.rarity || '');
-                    card.setAttribute('data-tag', item.tag || '');
-
-                    const imgContainer = document.createElement('div');
-                    imgContainer.className = 'img-container';
-                    const img = document.createElement('img');
-                    img.src = item.image || ''; 
-                    img.alt = item.name || 'item';
-
-                    imgContainer.appendChild(img);
-                    card.appendChild(imgContainer);
-                    itemsGrid.appendChild(card);
+        fetch('items.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('apps-container');
+                data.forEach(app => {
+                    container.innerHTML += `
+                    <div class="app-card">
+                        <div class="app-info">
+                            <div class="app-icon"><img src="${app.icon}" alt=""></div>
+                            <div class="app-details">
+                                <h3 style="color: #00ff00;">${app.name}</h3>
+                                <span>تحديث جديد</span>
+                            </div>
+                        </div>
+                        <p class="app-desc">${app.desc}</p>
+                        <a href="${app.link}" target="_blank" class="btn-download">
+                            <img src="https://images.icon-icons.com/1875/PNG/96/download_120262.png" alt="تحميل" style="width: 30px; height: 30px;">
+                        </a>
+                    </div>`;
                 });
-            }
-
-            function filterItems() {
-                const searchText = searchInput.value.toLowerCase().trim();
-                const selectedRarity = rarityFilter.value;
-                const selectedType = typeFilter.value;
-                const selectedTag = tagFilter.value;
-                const itemCards = document.querySelectorAll('.item-card');
-
-                itemCards.forEach(card => {
-                    const itemName = card.getAttribute('data-name').toLowerCase();
-                    const itemId = card.getAttribute('data-id').toLowerCase();
-                    const itemRarity = card.getAttribute('data-rarity');
-                    const itemType = card.getAttribute('data-type');
-                    const itemTag = card.getAttribute('data-tag');
-
-                    const matchesSearch = itemName.includes(searchText) || itemId.includes(searchText);
-                    const matchesRarity = (selectedRarity === 'all' || itemRarity === selectedRarity);
-                    const matchesType = (selectedType === 'all' || itemType === selectedType);
-                    const matchesTag = (selectedTag === 'all' || itemTag === selectedTag);
-
-                    if (matchesSearch && matchesRarity && matchesType && matchesTag) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            }
-        });
+            });
     </script>
 </body>
 </html>
