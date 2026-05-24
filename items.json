@@ -1,23 +1,9 @@
 [
   {
-    "id": "10001",
-    "name": "Alok Character",
+    "id": "102000004",
+    "name": "Primis",
     "category": "characters",
-    "image": "https://via.placeholder.com/150",
+    "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/102000004.png",
     "rarity": "epic"
-  },
-  {
-    "id": "20002",
-    "name": "AK47 - Blue Flame Draco",
-    "category": "weapons",
-    "image": "https://via.placeholder.com/150",
-    "rarity": "mythic"
-  },
-  {
-    "id": "30003",
-    "name": "Criminal Bundle (Red)",
-    "category": "bundles",
-    "image": "https://via.placeholder.com/150",
-    "rarity": "mythic"
   }
 ]
