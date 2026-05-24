@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبة عناصر فري فاير</title>
+    <title>FREE FIRE ELEMENTS</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
+        /* تصميم الخلفية والصفحة بالكامل بلون أسود خالص Deep Dark */
         body {
             background-color: #000000;
             color: #ffffff;
@@ -18,15 +20,10 @@
         }
 
         h1 {
-            font-family: 'Cairo', sans-serif;
-            font-weight: 300; /* الوزن المطلوب */
             text-align: center;
-            /* مزيج التدرج: فضي، أبيض، أصفر، ذهبي */
-            background: linear-gradient(45deg, #dcdcdc, #ffffff, #ffee55, #ffcc00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            /* توهج أبيض مضيء محيط بالنص */
-            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+            font-weight: 900; /* الوزن الأعرض للعنوان الرئيسي */
+            color: #ff3e3e; /* لافت بلون نيون أحمر */
+            text-shadow: 0 0 10px rgba(255, 62, 62, 0.5);
             margin-bottom: 30px;
         }
 
@@ -35,69 +32,76 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        input, select {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 15px;
+        .controls input, .controls select {
+            background: #111111;
+            border: 1px solid #333333;
+            color: #ffffff;
+            padding: 12px 20px;
             border-radius: 8px;
-            color: #fff;
             font-family: 'Cairo', sans-serif;
+            font-size: 16px;
             outline: none;
-            transition: 0.3s;
+            width: 100%;
+            transition: all 0.3s ease;
         }
 
-        input:focus, select:focus {
+        .controls input:focus, .controls select:focus {
             border-color: #ff3e3e;
-            box-shadow: 0 0 8px rgba(255, 62, 62, 0.3);
+            box-shadow: 0 0 10px rgba(255, 62, 62, 0.3);
         }
 
+        /* شبكة عرض كروت العناصر */
         .items-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
+        /* تصميم الكارت بشكل الزجاج المظلم Glassmorphism */
         .item-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(15, 15, 15, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s, border-color 0.3s;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .item-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 62, 62, 0.4);
-            box-shadow: 0 5px 15px rgba(255, 62, 62, 0.1);
+            border-color: #ff3e3e;
+            box-shadow: 0 5px 20px rgba(255, 62, 62, 0.2);
         }
 
-        /* تعديل حجم الصورة والإطار المربع الذهبي والأبيض الرقيق */
         .item-card img {
-            width: 55px;
-            height: 55px;
+            width: 100px;
+            height: 100px;
             object-fit: cover;
-            border-radius: 8px; /* أركان دائرية */
-            border: 1.5px solid transparent; /* قاعدة للإطار المتدرج */
-            background: linear-gradient(#000, #000) padding-box, 
-                        linear-gradient(135deg, #ffffff, #ffcc00) border-box; /* إطار متدرج أبيض وذهبي رقيق */
-            margin-bottom: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: #1a1a1a;
         }
 
+        /* تعديل وزن الاسم ليكون عريضاً جداً ومميزاً */
         .item-name {
-            font-weight: 700;
-            font-size: 16px;
-            margin: 8px 0;
+            font-weight: 900; /* Cairo Black 900 */
+            font-size: 18px;
+            margin: 10px 0 5px 0;
+            color: #ffffff;
         }
 
         .item-id {
-            font-size: 12px;
-            color: #888;
+            font-size: 13px;
+            color: #888888;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -106,7 +110,7 @@
     <h1>FREE FIRE ELEMENTS</h1>
 
     <div class="controls">
-        <input type="text" id="searchInput" placeholder="ابحث عن عنصر...">
+        <input type="text" id="searchInput" placeholder="ابحث عن عنصر بالاسم أو الـ ID...">
         <select id="categoryFilter">
             <option value="all">كل التصنيفات</option>
             <option value="characters">الشخصيات</option>
