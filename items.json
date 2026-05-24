@@ -1,29 +1,32 @@
 [
-  { "id": "101000001", "name": "Olivia", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000001.png", "rarity": "epic" },
-  { "id": "101000005", "name": "Character 101000005", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000005.png", "rarity": "epic" },
-  { "id": "101000006", "name": "Character 101000006", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000006.png", "rarity": "epic" },
-  { "id": "101000007", "name": "Character 101000007", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000007.png", "rarity": "epic" },
-  { "id": "101000008", "name": "Character 101000008", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000008.png", "rarity": "epic" },
-  { "id": "101000009", "name": "Character 101000009", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000009.png", "rarity": "epic" },
-  { "id": "101000010", "name": "A124", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000010.png", "rarity": "epic" },
-  { "id": "101000011", "name": "Character 101000011", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000011.png", "rarity": "epic" },
-  { "id": "101000012", "name": "Clu", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000012.png", "rarity": "epic" },
-  { "id": "101000013", "name": "Character 101000013", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000013.png", "rarity": "epic" },
-  { "id": "101000014", "name": "Character 101000014", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000014.png", "rarity": "epic" },
-  { "id": "101000015", "name": "Character 101000015", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000015.png", "rarity": "epic" },
-  { "id": "101000016", "name": "Character 101000016", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000016.png", "rarity": "epic" },
-  { "id": "101000017", "name": "Character 101000017", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000017.png", "rarity": "epic" },
-  { "id": "101000018", "name": "Character 101000018", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000018.png", "rarity": "epic" },
-  { "id": "101000019", "name": "Character 101000019", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000019.png", "rarity": "epic" },
-  { "id": "101000020", "name": "Character 101000020", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000020.png", "rarity": "epic" },
-  { "id": "101000021", "name": "Character 101000021", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000021.png", "rarity": "epic" },
-  { "id": "101000022", "name": "Character 101000022", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000022.png", "rarity": "epic" },
-  { "id": "101000023", "name": "Character 101000023", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000023.png", "rarity": "epic" },
-  { "id": "101000024", "name": "Character 101000024", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000024.png", "rarity": "epic" },
-  { "id": "101000025", "name": "Character 101000025", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000025.png", "rarity": "epic" },
-  { "id": "101000026", "name": "Character 101000026", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000026.png", "rarity": "epic" },
-  { "id": "101000027", "name": "Character 101000027", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000027.png", "rarity": "epic" },
-  { "id": "101000028", "name": "Character 101000028", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000028.png", "rarity": "epic" },
-  { "id": "101000049", "name": "Sonia", "category": "characters", "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000049.png", "rarity": "epic" },
-  { "id": "101000050", "name": "Character 101000050", "category": "characters", "image": "https://raw.githubusercontent.
-    
+  {
+    "id": "101000001",
+    "name": "Olivia",
+    "category": "characters",
+    "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000001.png"
+  },
+  {
+    "id": "101000010",
+    "name": "A124",
+    "category": "characters",
+    "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000010.png"
+  },
+  {
+    "id": "101000012",
+    "name": "Clu",
+    "category": "characters",
+    "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000012.png"
+  },
+  {
+    "id": "101000049",
+    "name": "Sonia",
+    "category": "characters",
+    "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/101000049.png"
+  },
+  {
+    "id": "102000004",
+    "name": "Primis",
+    "category": "characters",
+    "image": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/102000004.png"
+  }
+]
