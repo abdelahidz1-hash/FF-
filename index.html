@@ -102,22 +102,24 @@
             gap: 6px;
         }
 
-        /* كرت العنصر والتأثير البنفسجي */
+        /* كرت العنصر والتأثير الذهبي والفضي والأبيض المضيء */
         .item-card {
             background-color: #050505;
             border-radius: 6px;
             overflow: hidden;
             aspect-ratio: 1 / 1;
-            border: 1px solid #1a1a1a;
+            border: 1px solid #d4af37; /* إطار ذهبي مبدئي */
             position: relative;
             cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s;
-            box-shadow: inset 0 0 8px rgba(148, 0, 211, 0.2);
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            /* توهج داخلي يدمج بين الذهبي والأبيض الفضي */
+            box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.2), 0 0 5px rgba(255, 255, 255, 0.1);
         }
 
         .item-card:hover {
             transform: scale(1.04);
-            border-color: #9400d3;
+            border-color: #ffffff; /* يتحول الإطار للأبيض المضيء عند التمرير */
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), inset 0 0 8px rgba(212, 175, 55, 0.5);
         }
 
         .img-container {
@@ -134,7 +136,7 @@
             object-fit: cover;
         }
 
-        /* الخط السفلي الملون لكل كرت */
+        /* الخط السفلي الملون (تدرج ذهبي، فضي، وأبيض مضيء) */
         .item-card::after {
             content: '';
             position: absolute;
@@ -142,7 +144,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, #8a2be2, #ff00ff);
+            background: linear-gradient(90deg, #d4af37 0%, #e5e4e2 50%, #ffffff 100%);
         }
     </style>
 </head>
