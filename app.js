@@ -1,68 +1,48 @@
-// مصفوفة لتخزين البيانات
 let itemsData = [];
 
-// دالة جلب البيانات باستخدام رابط مباشر ومحدد زمني لمنع الكاش تماماً
+// جلب البيانات من ملف الـ JSON
 async function loadItems() {
     try {
-        // استخدمنا رابطاً نسبياً مع طابع زمني ديناميكي يضمن جلب أحدث ملف items.json رفعته
-        const timestamp = new Date().getTime();
-        const response = await fetch(`items.json?update=${timestamp}`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
+        const response = await fetch('items.json');
         itemsData = await response.json();
-        
-        // عرض البيانات فوراً بعد جلبها
         displayItems(itemsData);
     } catch (error) {
-        console.error("خطأ أثناء جلب ملف البيانات JSON:", error);
-        // خطة بديلة: إذا فشل جلب الملف لأي سبب، يتم إظهار رسالة تنبيهية للمطور في الكونسول
+        console.error("خطأ في جلب البيانات:", error);
     }
 }
 
-// دالة بناء الكروت وعرضها داخل الواجهة
+// عرض العناصر داخل الـ Grid
 function displayItems(items) {
     const container = document.getElementById('itemsContainer');
-    if (!container) return;
+    container.innerHTML = ''; // تنظيف الحاوية أولاً
 
-    container.innerHTML = '';
-
-    // إذا كانت المصفوفة فارغة
-    if (!items || items.length === 0) {
-        container.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #888; font-weight: 700; font-family: \'Cairo\', sans-serif;">لم يتم العثور على أي عناصر...</p>';
+    if(items.length === 0) {
+        container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; color:#666;">لم يتم العثور على نتائج</p>';
         return;
     }
 
-    // توليد كروت العناصر بناءً على البيانات الجديدة
     items.forEach(item => {
         const card = document.createElement('div');
         card.className = 'item-card';
-
-        // الروابط تعتمد على مستودع الصور المباشر بدقة مع معالجة حماية الصور المكسورة
         card.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/102000004.png';">
-            <div class="item-name" style="font-weight: 900;">${item.name}</div>
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-name">${item.name}</div>
             <div class="item-id">ID: ${item.id}</div>
         `;
-
         container.appendChild(card);
     });
 }
 
-// دالة التصفية الحية والبحث المشترك (بالاسم أو المعرّف)
-function filterItems() {
-    const searchInput = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
-    
-    if (!searchInput || !categoryFilter) return;
+// المراقبة والبحث الفوري (Real-time Filter)
+const searchInput = document.getElementById('searchInput');
+const categoryFilter = document.getElementById('categoryFilter');
 
-    const query = searchInput.value.toLowerCase().trim();
+function filterData() {
+    const searchText = searchInput.value.toLowerCase();
     const selectedCategory = categoryFilter.value;
 
     const filtered = itemsData.filter(item => {
-        const matchesSearch = item.name.toLowerCase().includes(query) || item.id.toString().includes(query);
+        const matchesSearch = item.name.toLowerCase().includes(searchText) || item.id.includes(searchText);
         const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
         return matchesSearch && matchesCategory;
     });
@@ -70,14 +50,8 @@ function filterItems() {
     displayItems(filtered);
 }
 
-// ربط المستمعات وتشغيل السكريبت فور تحميل الواجهة
-document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
+searchInput.addEventListener('input', filterData);
+categoryFilter.addEventListener('change', filterData);
 
-    if (searchInput) searchInput.addEventListener('input', filterItems);
-    if (categoryFilter) categoryFilter.addEventListener('change', filterItems);
-
-    // تشغيل الجلب الفوري
-    loadItems();
-});
+// تشغيل الدالة عند تحميل الصفحة
+window.onload = loadItems;
