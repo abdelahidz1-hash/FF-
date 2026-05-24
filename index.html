@@ -3,120 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FREE FIRE ELEMENTS</title>
+    <title>مكتبة عناصر فري فاير</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
+        /* ==========================================================================
+           1. تنسيقات التصميم والمظهر (CSS)
+           ========================================================================== */
         body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Cairo', sans-serif;
             margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            font-weight: 900;
-            color: #ff3e3e;
-            text-shadow: 0 0 10px rgba(255, 62, 62, 0.5);
-            margin-bottom: 30px;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .controls input, .controls select {
-            background: #111111;
-            border: 1px solid #333333;
+            padding: 0;
+            background-color: #000000; /* خلفية سوداء بالكامل */
             color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 16px;
-            outline: none;
+            font-family: 'Cairo', sans-serif; /* تطبيق خط كايرو بوزن 300 */
+            font-weight: 300;
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            max-width: 600px; /* عرض مثالي لمتصفحات الهواتف */
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 22px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* شريط البحث */
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
             width: 100%;
-            transition: all 0.3s ease;
+            padding: 12px 40px 12px 15px;
+            background-color: #111111;
+            border: 1px solid #252525;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            text-align: right;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 300;
         }
 
-        .controls input:focus, .controls select:focus {
-            border-color: #ff3e3e;
-            box-shadow: 0 0 10px rgba(255, 62, 62, 0.3);
+        .search-box input::placeholder {
+            color: #666;
         }
 
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* الفلاتر والقوائم المنسدلة */
+        .filters-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .filters-container select {
+            flex: 1;
+            background-color: #111111;
+            color: #aaaaaa;
+            border: 1px solid #252525;
+            padding: 10px 5px;
+            border-radius: 8px;
+            font-size: 13px;
+            outline: none;
+            cursor: pointer;
+            text-align: center;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 300;
+        }
+
+        /* شبكة عرض العناصر (5 أعمدة مثل الصورة) */
         .items-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 6px;
         }
 
+        /* كرت العنصر والتأثير البنفسجي */
         .item-card {
-            background: rgba(15, 15, 15, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background-color: #050505;
+            border-radius: 6px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            border: 1px solid #1a1a1a;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+            box-shadow: inset 0 0 8px rgba(148, 0, 211, 0.2);
         }
 
         .item-card:hover {
-            transform: translateY(-5px);
-            border-color: #ff3e3e;
-            box-shadow: 0 5px 20px rgba(255, 62, 62, 0.2);
+            transform: scale(1.04);
+            border-color: #9400d3;
         }
 
-        .item-card img {
-            width: 100px;
-            height: 100px;
+        .img-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            background: #1a1a1a;
         }
 
-        .item-name {
-            font-weight: 900; /* Cairo Black */
-            font-size: 18px;
-            margin: 10px 0 5px 0;
-            color: #ffffff;
-        }
-
-        .item-id {
-            font-size: 13px;
-            color: #888888;
-            font-weight: 400;
+        /* الخط السفلي الملون لكل كرت */
+        .item-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #ff00ff);
         }
     </style>
 </head>
 <body>
 
-    <h1>FREE FIRE ELEMENTS</h1>
+    <div class="wrapper">
+        <header>
+            <h1>مكتبة عناصر فري فاير</h1>
+        </header>
 
-    <div class="controls">
-        <input type="text" id="searchInput" placeholder="ابحث عن عنصر بالاسم أو الـ ID...">
-        <select id="categoryFilter">
-            <option value="all">كل التصنيفات</option>
-            <option value="characters">الشخصيات</option>
-            <option value="weapons">الأسلحة</option>
-            <option value="bundles">الحزم</option>
-        </select>
+        <section class="search-filter-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث باستخدام اسم العنصر، أو رمزه، أو معرفه...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="filters-container">
+                <select id="rarityFilter">
+                    <option value="all">جميعها نادرة</option>
+                    <option value="legendary">أسطوري</option>
+                    <option value="rare">نادر</option>
+                </select>
+
+                <select id="typeFilter">
+                    <option value="all">جميع الأنواع</option>
+                    <option value="characters">شخصيات</option>
+                    <option value="skins">سكنات</option>
+                </select>
+
+                <select id="tagFilter">
+                    <option value="all">جميع الوسوم</option>
+                    <option value="new">جديد</option>
+                </select>
+            </div>
+        </section>
+
+        <main class="items-grid" id="itemsGrid"></main>
     </div>
 
-    <div class="items-grid" id="itemsContainer"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const rarityFilter = document.getElementById('rarityFilter');
+            const typeFilter = document.getElementById('typeFilter');
+            const itemsGrid = document.getElementById('itemsGrid');
 
-    <script src="app.js"></script>
+            // جلب البيانات من ملف items.json المرفوع بجانب الصفحة
+            fetch('items.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('لم يتم العثور على ملف items.json أو حدث خطأ في الشبكة');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // بناء عناصر الشبكة ديناميكيًا بناءً على الـ JSON
+                    buildGrid(data);
+                    
+                    // تفعيل المستمعات لفرز العناصر بعد إنشائها
+                    searchInput.addEventListener('input', filterItems);
+                    rarityFilter.addEventListener('change', filterItems);
+                    typeFilter.addEventListener('change', filterItems);
+                })
+                .catch(error => {
+                    console.error('خطأ أثناء جلب العناصر:', error);
+                });
+
+            // دالة إنشاء كروت العناصر وإضافتها للواجهة
+            function buildGrid(items) {
+                itemsGrid.innerHTML = ''; // تفريغ الحاوية أولًا
+                
+                items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'item-card';
+                    
+                    // تعيين سمات البيانات (Attributes) المستخدمة في عملية الفلترة
+                    card.setAttribute('data-name', item.name || '');
+                    card.setAttribute('data-id', item.id || '');
+                    card.setAttribute('data-type', item.type || '');
+                    card.setAttribute('data-rarity', item.rarity || '');
+
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'img-container';
+
+                    // إنشاء عنصر الصورة وضبط مساره من ملف الـ JSON
+                    const img = document.createElement('img');
+                    img.src = item.image || ''; 
+                    img.alt = item.name || 'item';
+
+                    imgContainer.appendChild(img);
+                    card.appendChild(imgContainer);
+                    itemsGrid.appendChild(card);
+                });
+            }
+
+            // دالة الفرز والتصفية بناءً على المدخلات والفلاتر
+            function filterItems() {
+                const searchText = searchInput.value.toLowerCase().trim();
+                const selectedRarity = rarityFilter.value;
+                const selectedType = typeFilter.value;
+                const itemCards = document.querySelectorAll('.item-card');
+
+                itemCards.forEach(card => {
+                    const itemName = card.getAttribute('data-name').toLowerCase();
+                    const itemId = card.getAttribute('data-id').toLowerCase();
+                    const itemRarity = card.getAttribute('data-rarity');
+                    const itemType = card.getAttribute('data-type');
+
+                    // التحقق من المطابقة (البحث يعمل على الاسم أو المعرف ID)
+                    const matchesSearch = itemName.includes(searchText) || itemId.includes(searchText);
+                    const matchesRarity = (selectedRarity === 'all' || itemRarity === selectedRarity);
+                    const matchesType = (selectedType === 'all' || itemType === selectedType);
+
+                    if (matchesSearch && matchesRarity && matchesType) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
