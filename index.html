@@ -18,15 +18,15 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #000000; /* خلفية سوداء بالكامل */
+            background-color: #000000;
             color: #ffffff;
-            font-family: 'Cairo', sans-serif; /* تطبيق خط كايرو بوزن 300 */
+            font-family: 'Cairo', sans-serif;
             font-weight: 300;
             box-sizing: border-box;
         }
 
         .wrapper {
-            max-width: 600px; /* عرض مثالي لمتصفحات الهواتف */
+            max-width: 600px;
             margin: 0 auto;
             padding: 15px;
         }
@@ -39,7 +39,6 @@
             font-weight: 300;
         }
 
-        /* شريط البحث */
         .search-box {
             position: relative;
             margin-bottom: 15px;
@@ -73,7 +72,6 @@
             font-size: 15px;
         }
 
-        /* الفلاتر والقوائم المنسدلة */
         .filters-container {
             display: flex;
             gap: 8px;
@@ -95,30 +93,27 @@
             font-weight: 300;
         }
 
-        /* شبكة عرض العناصر (5 أعمدة مثل الصورة) */
         .items-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr); 
             gap: 6px;
         }
 
-        /* كرت العنصر والتأثير الذهبي والفضي والأبيض المضيء */
         .item-card {
             background-color: #050505;
             border-radius: 6px;
             overflow: hidden;
             aspect-ratio: 1 / 1;
-            border: 1px solid #d4af37; /* إطار ذهبي مبدئي */
+            border: 1px solid #d4af37;
             position: relative;
             cursor: pointer;
             transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-            /* توهج داخلي يدمج بين الذهبي والأبيض الفضي */
             box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.2), 0 0 5px rgba(255, 255, 255, 0.1);
         }
 
         .item-card:hover {
             transform: scale(1.04);
-            border-color: #ffffff; /* يتحول الإطار للأبيض المضيء عند التمرير */
+            border-color: #ffffff;
             box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), inset 0 0 8px rgba(212, 175, 55, 0.5);
         }
 
@@ -136,7 +131,6 @@
             object-fit: cover;
         }
 
-        /* الخط السفلي الملون (تدرج ذهبي، فضي، وأبيض مضيء) */
         .item-card::after {
             content: '';
             position: absolute;
@@ -184,54 +178,38 @@
         <main class="items-grid" id="itemsGrid"></main>
     </div>
 
-    <div id="items-container"></div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('searchInput');
             const rarityFilter = document.getElementById('rarityFilter');
             const typeFilter = document.getElementById('typeFilter');
+            const tagFilter = document.getElementById('tagFilter');
             const itemsGrid = document.getElementById('itemsGrid');
 
-            // جلب البيانات من ملف items.json المرفوع بجانب الصفحة
             fetch('items.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('لم يتم العثور على ملف items.json أو حدث خطأ في الشبكة');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    // بناء عناصر الشبكة ديناميكيًا بناءً على الـ JSON
                     buildGrid(data);
-                    
-                    // تفعيل المستمعات لفرز العناصر بعد إنشائها
                     searchInput.addEventListener('input', filterItems);
                     rarityFilter.addEventListener('change', filterItems);
                     typeFilter.addEventListener('change', filterItems);
+                    tagFilter.addEventListener('change', filterItems);
                 })
-                .catch(error => {
-                    console.error('خطأ أثناء جلب العناصر:', error);
-                });
+                .catch(error => console.error('خطأ:', error));
 
-            // دالة إنشاء كروت العناصر وإضافتها للواجهة
             function buildGrid(items) {
-                itemsGrid.innerHTML = ''; // تفريغ الحاوية أولًا
-                
+                itemsGrid.innerHTML = '';
                 items.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'item-card';
-                    
-                    // تعيين سمات البيانات (Attributes) المستخدمة في عملية الفلترة
                     card.setAttribute('data-name', item.name || '');
                     card.setAttribute('data-id', item.id || '');
                     card.setAttribute('data-type', item.type || '');
                     card.setAttribute('data-rarity', item.rarity || '');
+                    card.setAttribute('data-tag', item.tag || '');
 
                     const imgContainer = document.createElement('div');
                     imgContainer.className = 'img-container';
-
-                    // إنشاء عنصر الصورة وضبط مساره من ملف الـ JSON
                     const img = document.createElement('img');
                     img.src = item.image || ''; 
                     img.alt = item.name || 'item';
@@ -242,11 +220,11 @@
                 });
             }
 
-            // دالة الفرز والتصفية بناءً على المدخلات والفلاتر
             function filterItems() {
                 const searchText = searchInput.value.toLowerCase().trim();
                 const selectedRarity = rarityFilter.value;
                 const selectedType = typeFilter.value;
+                const selectedTag = tagFilter.value;
                 const itemCards = document.querySelectorAll('.item-card');
 
                 itemCards.forEach(card => {
@@ -254,13 +232,14 @@
                     const itemId = card.getAttribute('data-id').toLowerCase();
                     const itemRarity = card.getAttribute('data-rarity');
                     const itemType = card.getAttribute('data-type');
+                    const itemTag = card.getAttribute('data-tag');
 
-                    // التحقق من المطابقة (البحث يعمل على الاسم أو المعرف ID)
                     const matchesSearch = itemName.includes(searchText) || itemId.includes(searchText);
                     const matchesRarity = (selectedRarity === 'all' || itemRarity === selectedRarity);
                     const matchesType = (selectedType === 'all' || itemType === selectedType);
+                    const matchesTag = (selectedTag === 'all' || itemTag === selectedTag);
 
-                    if (matchesSearch && matchesRarity && matchesType) {
+                    if (matchesSearch && matchesRarity && matchesType && matchesTag) {
                         card.style.display = 'block';
                     } else {
                         card.style.display = 'none';
