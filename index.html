@@ -15,45 +15,36 @@
             --card-bg: #0b0b0b;
             --text-color: #ffffff;
             --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); 
-            --accent-hover: linear-gradient(45deg, #ffffff, #ffea00, #ffffff);
-            /* متغير للإطار المضيء */
             --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff);
             --muted-text: #888888;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
-        
-        /* إعادة الخلفية للون الأسود */
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-bottom: 60px; }
 
-        /* تعديل الهيدر ليتم توسيط العنوان */
-        header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
-        
-        .header-title-container { display: flex; align-items: center; gap: 10px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
+        .header-title-container { flex-grow: 1; text-align: center; }
         header h1 { font-size: 1rem; letter-spacing: 1px; background: linear-gradient(45deg, #ffd700, #ffea00, #dcdcdc, #b8860b, #ffffff); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 6s ease infinite; font-weight: bold; }
         
+        .search-btn { cursor: pointer; width: 32px; height: 32px; }
+
+        /* Modal Styles */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: #111; padding: 20px; border-radius: 12px; display: flex; gap: 10px; border: 1px solid #333; }
+        .modal-content input { background: #000; border: 1px solid #333; color: #fff; padding: 5px 10px; border-radius: 6px; outline: none; }
+        .send-btn { width: 32px; height: 32px; cursor: pointer; }
+
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        /* تصميم الكارد الزجاجي الشفاف بدون ضبابية */
-        .app-card { 
-            background: rgba(255, 255, 255, 0.1); 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            border-radius: 12px; 
-            padding: 20px; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: space-between; 
-            transition: transform 0.2s; 
-        }
+        .app-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
         .app-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
         .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
         .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* ألوان النص */
         .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; color: #00ff00; text-shadow: 0 0 8px #00ff00; }
         .app-desc { font-size: 0.9rem; color: #ffffff; text-shadow: 0 0 5px #ffffff; margin-bottom: 20px; height: 45px; overflow: hidden; }
         
@@ -66,10 +57,18 @@
 <body>
 
     <header>
-        <div class="header-title-container">
+        <div style="width: 32px;"></div> <div class="header-title-container">
             <h1>GLITCH FREE FIRE</h1>
         </div>
+        <img src="https://images.icon-icons.com/1880/PNG/96/iconfinder-search-4341327_120553.png" class="search-btn" alt="بحث" onclick="document.getElementById('searchModal').style.display='flex'">
     </header>
+
+    <div id="searchModal" class="modal" onclick="this.style.display='none'">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <input type="text" id="searchField" placeholder="ابحث عن قلتش...">
+            <img src="https://images.icon-icons.com/2248/PNG/96/send_circle_icon_136236.png" class="send-btn" alt="إرسال" onclick="performSearch()">
+        </div>
+    </div>
 
     <div class="container">
         <div class="apps-grid" id="apps-container"></div>
@@ -102,9 +101,15 @@
                     <a href="${app.link}" class="btn-download">
                         <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
                     </a>
-                </div>
-                `;
+                </div>`;
             });
+        }
+
+        function performSearch() {
+            const term = document.getElementById('searchField').value.toLowerCase();
+            const filtered = allApps.filter(app => app.name.toLowerCase().includes(term) || app.desc.toLowerCase().includes(term));
+            renderApps(filtered);
+            document.getElementById('searchModal').style.display = 'none';
         }
     </script>
 </body>
