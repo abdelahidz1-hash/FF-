@@ -34,7 +34,7 @@
         /* Modal Styles */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: #111; padding: 40px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; border: 1px solid #333; box-shadow: 0 0 20px rgba(255,255,255,0.1); width: 300px; height: 300px; }
-        .modal-content input { background: #000; border: 1px solid #555; color: #fff; padding: 10px 20px; border-radius: 20px; outline: none; width: 100%; font-size: 1rem; }
+        .modal-content input { background: #000; border: 1px solid #555; color: #fff; padding: 10px 20px; border-radius: 8px; outline: none; width: 100%; font-size: 1rem; }
         .send-btn { width: 50px; height: 50px; cursor: pointer; margin-top: 15px; }
 
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
@@ -42,24 +42,16 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .app-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            border: 1px solid transparent; 
-            border-image: var(--border-glow) 1;
-            border-radius: 20px; 
-            padding: 20px; 
-            display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; 
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-        }
-        .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
+        .app-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+        .app-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
         .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); }
+        .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; color: #00ff00; text-shadow: 0 0 8px #00ff00; }
         .app-desc { font-size: 0.9rem; color: #ffffff; text-shadow: 0 0 5px #ffffff; margin-bottom: 20px; height: 45px; overflow: hidden; }
         
-        .btn-download { background: var(--accent-color); color: var(--text-color); text-align: center; padding: 10px; border-radius: 20px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border: none; font-weight: bold; }
+        .btn-download { background: var(--accent-color); color: var(--text-color); text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border: none; font-weight: bold; }
         .btn-download img { width: 24px; height: 24px; }
         
         .update-notice { text-align: center; font-size: 1.1rem; margin-top: 30px; background: linear-gradient(45deg, #ffffff, #ffd700, #ff0000, #ffff00, #00ff00, #0000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s ease infinite; }
