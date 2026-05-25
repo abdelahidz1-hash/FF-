@@ -22,10 +22,21 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
-        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-bottom: 60px; }
+        
+        /* إضافة الخلفية هنا */
+        body { 
+            background-image: url('https://i.ibb.co/jvyVmZ7b/1779362440088.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--text-color); 
+            line-height: 1.6; 
+            padding-bottom: 60px; 
+        }
 
         /* تعديل الهيدر ليتم توسيط العنوان */
-        header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
+        header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); z-index: 100; }
         
         .header-title-container { display: flex; align-items: center; gap: 10px; }
         header h1 { font-size: 1rem; letter-spacing: 1px; background: linear-gradient(45deg, #ffd700, #ffea00, #dcdcdc, #b8860b, #ffffff); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 6s ease infinite; font-weight: bold; }
@@ -35,9 +46,9 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        /* تصميم الكارد الزجاجي الشفاف بدون ضبابية */
+        /* تصميم الكارد الزجاجي الشفاف */
         .app-card { 
-            background: rgba(255, 255, 255, 0.1); 
+            background: rgba(0, 0, 0, 0.5); 
             border: 1px solid rgba(255, 255, 255, 0.2); 
             border-radius: 12px; 
             padding: 20px; 
