@@ -12,7 +12,7 @@
     <style>
         :root {
             --bg-color: #000000;
-            --card-bg: rgba(0, 50, 100, 0.3); /* تم تغيير لون البطاقة للأزرق الشفاف */
+            --card-bg: #c0c0c0; /* لون فضي للبطاقة */
             --text-color: #ffffff;
             --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); 
             --accent-hover: linear-gradient(45deg, #ffffff, #ffea00, #ffffff);
@@ -35,10 +35,11 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .app-card { background-color: var(--card-bg); border: 1px solid #004a99; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
-        .app-card:hover { transform: translateY(-5px); border-color: #007bff; }
+        /* تحديث لون البطاقة إلى الفضي */
+        .app-card { background-color: #555555; border: 1px solid #777777; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+        .app-card:hover { transform: translateY(-5px); border-color: #aaa; }
         .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .app-icon { width: 60px; height: 60px; background: #1a1a1a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .app-icon { width: 60px; height: 60px; background: #333333; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
         /* ألوان النص */
