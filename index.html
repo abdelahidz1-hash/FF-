@@ -24,26 +24,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-bottom: 60px; }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
+        header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
         .header-title-container { display: flex; align-items: center; gap: 10px; }
         header h1 { font-size: 1rem; letter-spacing: 1px; background: linear-gradient(45deg, #ffd700, #ffea00, #dcdcdc, #b8860b, #ffffff); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 6s ease infinite; font-weight: bold; }
         
-        /* تصميم حقل البحث والزر مع إطار متدرج رقيق */
-        .search-wrapper { display: flex; align-items: center; gap: 10px; }
-        
-        .search-container { 
-            background: #111; padding: 0 10px; border-radius: 8px; height: 45px; display: flex; align-items: center;
-            position: relative; border: 1px solid transparent; background-image: linear-gradient(#111, #111), var(--border-glow);
-            background-origin: border-box; background-clip: padding-box, border-box;
-        }
-        .search-container input { background: transparent; border: none; color: white; padding: 5px; outline: none; width: 120px; height: 100%; }
-        
-        .search-icon { 
-            width: 45px; height: 45px; cursor: pointer; background: #111; padding: 10px; border-radius: 8px;
-            border: 1px solid transparent; background-image: linear-gradient(#111, #111), var(--border-glow);
-            background-origin: border-box; background-clip: padding-box, border-box;
-        }
-
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
@@ -59,8 +43,8 @@
         .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; color: #00ff00; text-shadow: 0 0 8px #00ff00; }
         .app-desc { font-size: 0.9rem; color: #ffffff; text-shadow: 0 0 5px #ffffff; margin-bottom: 20px; height: 45px; overflow: hidden; }
         
-        .btn-download { background: var(--accent-color); color: var(--text-color); text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border: none; gap: 8px; font-weight: bold; }
-        .btn-download img { width: 20px; height: 20px; }
+        .btn-download { background: var(--accent-color); color: var(--text-color); text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border: none; font-weight: bold; }
+        .btn-download img { width: 24px; height: 24px; }
         
         .update-notice { text-align: center; font-size: 1.1rem; margin-top: 30px; background: linear-gradient(45deg, #ffffff, #ffd700, #ff0000, #ffff00, #00ff00, #0000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s ease infinite; }
     </style>
@@ -70,12 +54,6 @@
     <header>
         <div class="header-title-container">
             <h1>GLITCH FREE FIRE</h1>
-        </div>
-        <div class="search-wrapper">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="ابحث عن قلتش...">
-            </div>
-            <img src="https://images.icon-icons.com/3408/PNG/96/send_icon_217026.png" class="search-icon" alt="إرسال">
         </div>
     </header>
 
@@ -108,7 +86,6 @@
                     </div>
                     <div class="app-desc">${app.desc}</div>
                     <a href="${app.link}" class="btn-download">
-                        تحميل
                         <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
                     </a>
                 </div>
