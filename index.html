@@ -42,10 +42,18 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .app-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
-        .app-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
+        .app-card { 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid transparent; 
+            border-image: var(--border-glow) 1;
+            border-radius: 12px; 
+            padding: 20px; 
+            display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        }
+        .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
         .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(255,255,255,0.3); }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; color: #00ff00; text-shadow: 0 0 8px #00ff00; }
@@ -68,10 +76,6 @@
             <div class="icon-container" onclick="document.getElementById('searchModal').style.display='flex'">
                 <div class="icon-glow"></div>
                 <img src="https://images.icon-icons.com/561/PNG/96/search-circular-symbol_icon-icons.com_53800.png" class="action-btn" alt="بحث">
-            </div>
-            <div class="icon-container">
-                <div class="icon-glow"></div>
-                <img src="https://images.icon-icons.com/1182/PNG/96/1490129345-rounded11_82205.png" class="action-btn" alt="إعدادات">
             </div>
         </div>
     </header>
