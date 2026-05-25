@@ -32,7 +32,7 @@
   {
     "name": "GLITCH جميع الأسلحة المطورة",
     "desc": "ملف قلتش جميع الأسلحة المطورة في فري فاير",
-    "icon": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/407104504.png",
+    "icon": "https://cdn.jsdelivr.net/gh/ShahGCreator/icon@main/PNG/407104504.png",
     "link": "https://www.mediafire.com/file/w29jqggltacwiks/GLITCH_%25E2%259A%2594%25EF%25B8%258F_%25F0%259F%2594%25AB.7z/file"
   },
   {
@@ -70,5 +70,11 @@
     "desc": "ملف قلتش سكنات برازيلية نادرة في فري فاير",
     "icon": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/710000046.png",
     "link": "https://www.mediafire.com/file/lq48jtdaf099i2o/GLITCH_FREE_STYLE_%25F0%259F%2591%25BA.zip/file"
+  },
+  {
+    "name": "GLITCH SNAW",
+    "desc": "ملف قلتش سكن جدار جلو في فري فاير",
+    "icon": "https://raw.githubusercontent.com/ShahGCreator/icon/main/PNG/907102126.png",
+    "link": "https://www.mediafire.com/file/qfj1uarkp6vr3nb/GLITCH_SANW_FF.7z/file"
   }
 ]
