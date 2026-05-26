@@ -33,9 +33,9 @@
 
         /* Modal Styles */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { background: #111; padding: 40px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; border: 1px solid #333; box-shadow: 0 0 20px rgba(255,255,255,0.1); width: 300px; height: 300px; }
+        .modal-content { background: #111; padding: 40px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; border: 1px solid #333; box-shadow: 0 0 20px rgba(255,255,255,0.1); width: 300px; }
         .modal-content input { background: #000; border: 1px solid #555; color: #fff; padding: 10px 20px; border-radius: 8px; outline: none; width: 100%; font-size: 1rem; }
-        .send-btn { width: 50px; height: 50px; cursor: pointer; margin-top: 15px; }
+        #statusMessage { font-size: 0.9rem; margin-top: 10px; }
 
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
@@ -74,8 +74,8 @@
 
     <div id="searchModal" class="modal" onclick="this.style.display='none'">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <input type="text" id="searchField" placeholder="ابحث عن قلتش...">
-            <img src="https://images.icon-icons.com/2838/PNG/96/mail_send_icon_180871.png" class="send-btn" alt="إرسال" onclick="performSearch()">
+            <input type="text" id="searchField" placeholder="ابحث عن قلتش..." oninput="performSearch()">
+            <div id="statusMessage"></div>
         </div>
     </div>
 
@@ -108,18 +108,5 @@
                     </div>
                     <div class="app-desc">${app.desc}</div>
                     <a href="${app.link}" class="btn-download">
-                        <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
-                    </a>
-                </div>`;
-            });
-        }
-
-        function performSearch() {
-            const term = document.getElementById('searchField').value.toLowerCase();
-            const filtered = allApps.filter(app => app.name.toLowerCase().includes(term) || app.desc.toLowerCase().includes(term));
-            renderApps(filtered);
-            document.getElementById('searchModal').style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+                        <img src="
+    
