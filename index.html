@@ -10,15 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
 
     <style>
-        /* ستايل الشاشة الترحيبية */
-        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; }
-        #splash-screen img { width: 100%; height: 100%; object-fit: cover; }
-        
-        /* شريط التحميل الاحترافي */
-        .loader-container { position: absolute; bottom: 50px; width: 80%; height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; }
-        .loader-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ffd700, #ffffff); animation: progress 5s linear forwards; }
-        @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
-
         :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff); --muted-text: #888888; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
@@ -52,7 +43,6 @@
         .app-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
         .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
         
-        /* جعل الأيقونة قابلة للنقر */
         .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
@@ -69,13 +59,6 @@
     </style>
 </head>
 <body>
-
-    <div id="splash-screen">
-        <img src="https://i.ibb.co/4RJKQbng/1779362440088.png" alt="Welcome">
-        <div class="loader-container">
-            <div class="loader-bar"></div>
-        </div>
-    </div>
 
     <header>
         <div style="width: 80px;"></div> 
@@ -97,7 +80,6 @@
         </div>
     </div>
 
-    <!-- Zoom Modal -->
     <div id="zoomModal" onclick="this.style.display='none'">
         <img id="fullImage" src="" alt="Full View">
     </div>
@@ -108,10 +90,6 @@
     </div>
 
     <script>
-        setTimeout(function() {
-            document.getElementById('splash-screen').style.display = 'none';
-        }, 5000);
-
         let allApps = [];
 
         fetch('items.json')
