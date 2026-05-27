@@ -122,8 +122,50 @@
 
     <script>
         let allApps = [];
+        // جلب البيانات من ملف items.json
         fetch('items.json').then(r => r.json()).then(data => { allApps = data; renderApps(allApps); });
 
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => alert
-            
+            navigator.clipboard.writeText(text).then(() => alert("تم نسخ الكود: " + text));
+        }
+
+        function zoomImage(src) {
+            document.getElementById('fullImage').src = src;
+            document.getElementById('zoomModal').style.display = 'flex';
+        }
+
+        function renderApps(apps) {
+            const container = document.getElementById('apps-container');
+            container.innerHTML = '';
+            apps.forEach(app => {
+                container.innerHTML += `
+                <div class="app-card">
+                    <div class="app-info">
+                        <div class="app-icon" onclick="zoomImage('${app.icon}')">
+                            <img src="${app.icon}" alt="">
+                        </div>
+                        <div class="app-details">
+                            <h3>${app.name}</h3>
+                        </div>
+                    </div>
+                    ${app.code ? `
+                    <div class="cod-container">
+                        <span>COD : ${app.code}</span>
+                        <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ">
+                    </div>` : ''}
+                    <div class="app-desc">${app.desc}</div>
+                    <a href="${app.link}" class="btn-download">
+                        <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
+                    </a>
+                </div>`;
+            });
+        }
+
+        function performSearch() {
+            const term = document.getElementById('searchField').value.toLowerCase();
+            renderApps(allApps.filter(app => app.name.toLowerCase().includes(term) || app.desc.toLowerCase().includes(term)));
+            document.getElementById('searchModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
