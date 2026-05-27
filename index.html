@@ -17,7 +17,9 @@
         .welcome-text { color: #eee; font-size: 0.95rem; line-height: 1.6; font-family: 'Cairo', sans-serif; font-weight: 300; text-align: right; }
         .welcome-text ul { list-style: none; margin: 15px 0; }
         .welcome-text li { margin-bottom: 5px; }
-        .welcome-btn { display: inline-block; margin-top: 20px; padding: 10px 30px; background: #ffd700; color: #000; border-radius: 50px; font-weight: bold; cursor: pointer; text-decoration: none; }
+        .welcome-btn { cursor: pointer; margin-top: 20px; transition: transform 0.2s; }
+        .welcome-btn img { width: 60px; height: 60px; }
+        .welcome-btn:hover { transform: scale(1.1); }
 
         :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); }
 
@@ -80,7 +82,9 @@
                 </ul>
                 <small style="color:#ff4444;">⚠️ نصيحة: جرب دائماً على حساب احتياطي أولاً.</small>
             </div>
-            <div class="welcome-btn" onclick="document.getElementById('welcome-screen').style.display='none'">ابدأ التجربة الآن</div>
+            <div class="welcome-btn" onclick="document.getElementById('welcome-screen').style.display='none'">
+                <img src="https://images.icon-icons.com/1132/PNG/96/1486348529-back-backwards-repeat-arrows-arrow_80455.png" alt="ابدأ">
+            </div>
         </div>
     </div>
 
@@ -142,23 +146,5 @@
                     </div>
                     ${app.code ? `
                     <div class="cod-container">
-                        <span>COD : ${app.code}</span>
-                        <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ">
-                    </div>` : ''}
-                    <div class="app-desc">${app.desc}</div>
-                    <a href="${app.link}" class="btn-download">
-                        <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
-                    </a>
-                </div>`;
-            });
-        }
-
-        function performSearch() {
-            const term = document.getElementById('searchField').value.toLowerCase();
-            renderApps(allApps.filter(app => app.name.toLowerCase().includes(term) || app.desc.toLowerCase().includes(term)));
-            document.getElementById('searchModal').style.display = 'none';
-        }
-    </script>
-</body>
-    </html>
-                
+                        <span>
+        
