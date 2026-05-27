@@ -37,9 +37,9 @@
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; text-align: center; }
         
-        /* الصورة الآن بعرض كامل 100% */
-        .app-icon { width: 100%; height: 180px; border-radius: 10px; cursor: pointer; overflow: hidden; margin-bottom: 15px; }
-        .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+        /* الصورة مربعة وتظهر بالكامل (contain) */
+        .app-icon { width: 100%; aspect-ratio: 1 / 1; border-radius: 10px; cursor: pointer; overflow: hidden; margin-bottom: 15px; background: rgba(255,255,255,0.05); }
+        .app-icon img { width: 100%; height: 100%; object-fit: contain; }
         
         .app-details h3 { color: #00ff00; margin-bottom: 5px; }
         .cod-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0; }
