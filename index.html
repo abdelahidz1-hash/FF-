@@ -51,10 +51,10 @@
         .app-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
         .app-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
         .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
-        .app-icon-wrapper { display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        
+        /* جعل الأيقونة قابلة للنقر */
+        .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .zoom-btn { width: 24px; height: 24px; cursor: pointer; }
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; color: #00ff00; text-shadow: 0 0 8px #00ff00; }
         .cod-container { display: flex; align-items: center; gap: 10px; margin: 5px 0 15px 0; color: #ffd700; font-weight: bold; font-size: 0.9rem; }
@@ -139,9 +139,8 @@
                 container.innerHTML += `
                 <div class="app-card">
                     <div class="app-info">
-                        <div class="app-icon-wrapper">
-                            <div class="app-icon"><img src="${app.icon}" alt=""></div>
-                            <img src="https://images.icon-icons.com/1898/PNG/96/enlarge_121031.png" class="zoom-btn" onclick="zoomImage('${app.icon}')" alt="تكبير">
+                        <div class="app-icon" onclick="zoomImage('${app.icon}')">
+                            <img src="${app.icon}" alt="">
                         </div>
                         <div class="app-details">
                             <h3>${app.name}</h3>
