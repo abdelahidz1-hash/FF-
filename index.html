@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
 
     <style>
-        /* ستايل الشاشة الترحيبية */
-        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; cursor: pointer; }
-        .welcome-card { background: #111; border: 1px solid #333; padding: 30px; border-radius: 25px; text-align: center; max-width: 500px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        /* ستايل الشاشة الترحيبية المحدثة */
+        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .welcome-box { background: #0b0b0b; border: 1px solid #333; padding: 30px; border-radius: 25px; text-align: center; max-width: 500px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
         .welcome-text { color: #00ff00; font-size: 1.2rem; line-height: 1.8; }
         .welcome-title { color: #ff0000; font-size: 1.8rem; font-weight: bold; margin-bottom: 20px; }
 
@@ -67,15 +67,13 @@
 <body>
 
     <!-- الشاشة الترحيبية -->
-    <div id="welcome-screen" onclick="this.style.display='none'">
-        <div class="welcome-card">
+    <div id="welcome-screen">
+        <div class="welcome-box">
             <div class="welcome-title">GLITCH SKIN FF</div>
             <div class="welcome-text">
                 سلام عليكم ورحمة الله وبركاته، إخواني وأخواتي الكرام في هذا الموقع GLITCH SKIN FF.<br><br>
                 نرجو منكم استخدام هذه القلتشات فهي آمنة ومضمونة، ويمكنك استخدامها في حسابك الأساسي فهي مجربة وفعالة وبدون باند وبلاك لست.<br><br>
                 شكراً لكم على استخدام هذا الموقع.
-                <br><br>
-                <small style="color: #666;">(اضغط في أي مكان للمتابعة)</small>
             </div>
         </div>
     </div>
@@ -110,6 +108,11 @@
     </div>
 
     <script>
+        // مؤقت 30 ثانية لإخفاء الشاشة الترحيبية
+        setTimeout(function() {
+            document.getElementById('welcome-screen').style.display = 'none';
+        }, 30000);
+
         let allApps = [];
 
         fetch('items.json')
@@ -165,5 +168,5 @@
         }
     </script>
 </body>
-    </html>
+            </html>
     
