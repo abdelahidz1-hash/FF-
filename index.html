@@ -30,17 +30,19 @@
         .modal-content input { background: #000; border: 1px solid #555; color: #fff; padding: 10px; border-radius: 8px; width: 100%; }
         .send-btn { width: 40px; cursor: pointer; }
         
-        /* Modal لعرض الصورة */
         #imageModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; }
         #fullImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; }
-        .app-icon { width: 60px; height: 60px; border-radius: 14px; cursor: pointer; overflow: hidden; }
+        .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; text-align: center; }
+        
+        /* الصورة الآن بعرض كامل 100% */
+        .app-icon { width: 100%; height: 180px; border-radius: 10px; cursor: pointer; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .app-details h3 { color: #00ff00; }
-        .cod-wrapper { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
+        
+        .app-details h3 { color: #00ff00; margin-bottom: 5px; }
+        .cod-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0; }
         .cod-text { color: #ffd700; font-size: 0.85rem; font-weight: bold; }
         .copy-btn { width: 20px; cursor: pointer; filter: invert(1); }
         .btn-download { background: var(--accent-color); padding: 10px; border-radius: 8px; text-decoration: none; display: flex; justify-content: center; align-items: center; margin-top: 15px; }
@@ -94,18 +96,14 @@
             apps.forEach(app => {
                 container.innerHTML += `
                 <div class="app-card">
-                    <div style="display:flex; gap:15px; align-items:center;">
-                        <div class="app-icon" onclick="showFullImage('${app.icon}')"><img src="${app.icon}"></div>
-                        <div>
-                            <h3>${app.name}</h3>
-                            ${app.code ? `
-                            <div class="cod-wrapper">
-                                <div class="cod-text">COD : ${app.code}</div>
-                                <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyCode('${app.code}')">
-                            </div>` : ''}
-                        </div>
-                    </div>
-                    <div style="margin-top:15px; font-size:0.9rem;">${app.desc}</div>
+                    <div class="app-icon" onclick="showFullImage('${app.icon}')"><img src="${app.icon}"></div>
+                    <h3>${app.name}</h3>
+                    ${app.code ? `
+                    <div class="cod-wrapper">
+                        <div class="cod-text">COD : ${app.code}</div>
+                        <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyCode('${app.code}')">
+                    </div>` : ''}
+                    <div style="margin:10px 0; font-size:0.9rem;">${app.desc}</div>
                     <a href="${app.link}" class="btn-download">
                         <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png">
                     </a>
