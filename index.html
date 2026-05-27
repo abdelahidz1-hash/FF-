@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLITCH FREE FIRE SKIN</title>
+    <title>GLITCH FREE FIRE SK</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,9 +29,10 @@
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; text-align: center; }
         
-        /* تعديل حجم الأيقونة */
-        .app-icon { width: 120px; height: 120px; border-radius: 10px; cursor: pointer; overflow: hidden; margin: 0 auto 15px auto; background: #ffffff; }
+        .app-icon-wrapper { position: relative; display: inline-block; margin: 0 auto 15px auto; }
+        .app-icon { width: 120px; height: 120px; border-radius: 10px; cursor: pointer; overflow: hidden; background: #ffffff; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .enlarge-btn { position: absolute; bottom: 5px; right: 5px; width: 25px; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; padding: 2px; }
         
         .app-details h3 { color: #00ff00; margin-bottom: 5px; }
         .cod-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0; }
@@ -85,7 +86,10 @@
             apps.forEach(app => {
                 container.innerHTML += `
                 <div class="app-card">
-                    <div class="app-icon" onclick="showFullImage('${app.icon}')"><img src="${app.icon}"></div>
+                    <div class="app-icon-wrapper">
+                        <div class="app-icon" onclick="showFullImage('${app.icon}')"><img src="${app.icon}"></div>
+                        <img src="https://images.icon-icons.com/1898/PNG/96/enlarge_121031.png" class="enlarge-btn" onclick="showFullImage('${app.icon}')">
+                    </div>
                     <div class="app-details">
                         <h3>${app.name}</h3>
                         ${app.code ? `
