@@ -17,9 +17,11 @@
         .welcome-text { color: #eee; font-size: 0.95rem; line-height: 1.6; font-family: 'Cairo', sans-serif; font-weight: 300; text-align: right; }
         .welcome-text ul { list-style: none; margin: 15px 0; }
         .welcome-text li { margin-bottom: 5px; }
-        .welcome-btn { cursor: pointer; margin-top: 20px; transition: transform 0.2s; }
-        .welcome-btn img { width: 60px; height: 60px; }
-        .welcome-btn:hover { transform: scale(1.1); }
+        
+        /* الزر المحدث */
+        .welcome-btn-container { position: relative; margin-top: 25px; display: inline-flex; justify-content: center; align-items: center; }
+        .welcome-btn-glow { position: absolute; width: 60px; height: 60px; background: radial-gradient(circle, rgba(255,215,0,0.6) 0%, rgba(0,0,0,0) 70%); }
+        .welcome-btn-img { width: 45px; height: 45px; cursor: pointer; position: relative; z-index: 2; }
 
         :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); }
 
@@ -82,8 +84,9 @@
                 </ul>
                 <small style="color:#ff4444;">⚠️ نصيحة: جرب دائماً على حساب احتياطي أولاً.</small>
             </div>
-            <div class="welcome-btn" onclick="document.getElementById('welcome-screen').style.display='none'">
-                <img src="https://images.icon-icons.com/1132/PNG/96/1486348529-back-backwards-repeat-arrows-arrow_80455.png" alt="ابدأ">
+            <div class="welcome-btn-container" onclick="document.getElementById('welcome-screen').style.display='none'">
+                <div class="welcome-btn-glow"></div>
+                <img src="https://images.icon-icons.com/1132/PNG/96/1486348529-back-backwards-repeat-arrows-arrow_80455.png" class="welcome-btn-img" alt="ابدأ">
             </div>
         </div>
     </div>
@@ -122,29 +125,5 @@
         fetch('items.json').then(r => r.json()).then(data => { allApps = data; renderApps(allApps); });
 
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => alert("تم نسخ الكود: " + text));
-        }
-
-        function zoomImage(src) {
-            document.getElementById('fullImage').src = src;
-            document.getElementById('zoomModal').style.display = 'flex';
-        }
-
-        function renderApps(apps) {
-            const container = document.getElementById('apps-container');
-            container.innerHTML = '';
-            apps.forEach(app => {
-                container.innerHTML += `
-                <div class="app-card">
-                    <div class="app-info">
-                        <div class="app-icon" onclick="zoomImage('${app.icon}')">
-                            <img src="${app.icon}" alt="">
-                        </div>
-                        <div class="app-details">
-                            <h3>${app.name}</h3>
-                        </div>
-                    </div>
-                    ${app.code ? `
-                    <div class="cod-container">
-                        <span>
-        
+            navigator.clipboard.writeText(text).then(() => alert
+            
