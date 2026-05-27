@@ -11,54 +11,15 @@
 
     <style>
         /* ستايل الشاشة الترحيبية */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        #splash-screen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; }
+        #splash-screen img { width: 100%; height: 100%; object-fit: cover; }
         
         /* شريط التحميل الاحترافي */
-        .loader-container {
-            position: absolute;
-            bottom: 50px;
-            width: 80%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .loader-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #ffd700, #ffffff);
-            animation: progress 5s linear forwards;
-        }
-        @keyframes progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
+        .loader-container { position: absolute; bottom: 50px; width: 80%; height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; }
+        .loader-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ffd700, #ffffff); animation: progress 5s linear forwards; }
+        @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
 
-        :root {
-            --bg-color: #000000;
-            --card-bg: #0b0b0b;
-            --text-color: #ffffff;
-            --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); 
-            --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff);
-            --muted-text: #888888;
-        }
+        :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff); --muted-text: #888888; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-bottom: 60px; }
@@ -78,9 +39,9 @@
         .modal-content input { background: #000; border: 1px solid #555; color: #fff; padding: 10px 20px; border-radius: 8px; outline: none; width: 100%; font-size: 1rem; }
         .send-btn { width: 50px; height: 50px; cursor: pointer; margin-top: 15px; }
 
-        /* Image View Modal */
-        #imgViewModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; justify-content: center; align-items: center; }
-        #fullImage { max-width: 90%; max-height: 90%; border-radius: 10px; border: 2px solid #fff; }
+        /* Image Zoom Modal */
+        #zoomModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; justify-content: center; align-items: center; }
+        #fullImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
 
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
@@ -89,10 +50,11 @@
         
         .app-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
         .app-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
-        .app-info { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .app-icon { width: 80px; height: 80px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+        .app-icon-wrapper { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .enlarge-btn { width: 25px; cursor: pointer; margin-top: 5px; }
+        .zoom-btn { width: 24px; height: 24px; cursor: pointer; }
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; color: #00ff00; text-shadow: 0 0 8px #00ff00; }
         .cod-container { display: flex; align-items: center; gap: 10px; margin: 5px 0 15px 0; color: #ffd700; font-weight: bold; font-size: 0.9rem; }
@@ -135,8 +97,8 @@
         </div>
     </div>
 
-    <!-- نافذة عرض الصورة -->
-    <div id="imgViewModal" onclick="this.style.display='none'">
+    <!-- Zoom Modal -->
+    <div id="zoomModal" onclick="this.style.display='none'">
         <img id="fullImage" src="" alt="Full View">
     </div>
 
@@ -165,9 +127,9 @@
             });
         }
 
-        function showFullImage(src) {
+        function zoomImage(src) {
             document.getElementById('fullImage').src = src;
-            document.getElementById('imgViewModal').style.display = 'flex';
+            document.getElementById('zoomModal').style.display = 'flex';
         }
 
         function renderApps(apps) {
@@ -177,8 +139,10 @@
                 container.innerHTML += `
                 <div class="app-card">
                     <div class="app-info">
-                        <div class="app-icon"><img src="${app.icon}" alt=""></div>
-                        <img src="https://images.icon-icons.com/1898/PNG/96/enlarge_121031.png" class="enlarge-btn" onclick="showFullImage('${app.icon}')" alt="تكبير">
+                        <div class="app-icon-wrapper">
+                            <div class="app-icon"><img src="${app.icon}" alt=""></div>
+                            <img src="https://images.icon-icons.com/1898/PNG/96/enlarge_121031.png" class="zoom-btn" onclick="zoomImage('${app.icon}')" alt="تكبير">
+                        </div>
                         <div class="app-details">
                             <h3>${app.name}</h3>
                         </div>
@@ -204,5 +168,4 @@
         }
     </script>
 </body>
-            </html>
-    
+</html>
