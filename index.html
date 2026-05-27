@@ -10,6 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
 
     <style>
+        /* ستايل الشاشة الترحيبية الجديدة */
+        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; cursor: pointer; }
+        .welcome-text { color: #00ff00; font-size: 1.2rem; line-height: 1.8; max-width: 500px; }
+        .welcome-title { color: #ff0000; font-size: 1.8rem; font-weight: bold; margin-bottom: 20px; }
+
         :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff); --muted-text: #888888; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
@@ -59,6 +64,18 @@
     </style>
 </head>
 <body>
+
+    <!-- الشاشة الترحيبية -->
+    <div id="welcome-screen" onclick="this.style.display='none'">
+        <div class="welcome-title">GLITCH SKIN FF</div>
+        <div class="welcome-text">
+            سلام عليكم ورحمة الله وبركاته، إخواني وأخواتي الكرام في هذا الموقع GLITCH SKIN FF.<br><br>
+            نرجو منكم استخدام هذه القلتشات فهي آمنة ومضمونة، ويمكنك استخدامها في حسابك الأساسي فهي مجربة وفعالة وبدون باند وبلاك لست.<br><br>
+            شكراً لكم على استخدام هذا الموقع.
+            <br><br>
+            <small>(اضغط في أي مكان للمتابعة)</small>
+        </div>
+    </div>
 
     <header>
         <div style="width: 80px;"></div> 
