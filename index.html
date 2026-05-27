@@ -7,13 +7,14 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300&display=swap" rel="stylesheet">
 
     <style>
         /* ستايل الشاشة الترحيبية المحدثة */
         #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; }
         .welcome-box { background: #0b0b0b; border: 1px solid #333; padding: 30px; border-radius: 25px; text-align: center; max-width: 500px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-        .welcome-text { color: #00ff00; font-size: 1.2rem; line-height: 1.8; }
+        /* تعديل الخط والوزن هنا */
+        .welcome-text { color: #00ff00; font-size: 1.2rem; line-height: 1.8; font-family: 'Cairo', sans-serif; font-weight: 200; }
         .welcome-title { color: #ff0000; font-size: 1.8rem; font-weight: bold; margin-bottom: 20px; }
 
         :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff); --muted-text: #888888; }
@@ -69,7 +70,7 @@
     <div id="welcome-screen">
         <div class="welcome-box">
             <div class="welcome-title">GLITCH SKIN FF</div>
-            <div class="welcome-text" id="welcome-content">جاري التحميل...</div>
+            <div id="welcome-text" class="welcome-text">جاري تحميل الرسالة...</div>
         </div>
     </div>
 
@@ -103,14 +104,14 @@
     </div>
 
     <script>
-        // جلب نص الترحيب من ملف text
+        // جلب النص من ملف 'text'
         fetch('text')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('welcome-content').innerHTML = data;
+                document.getElementById('welcome-text').innerText = data;
             })
             .catch(err => {
-                document.getElementById('welcome-content').innerHTML = "مرحباً بكم في موقعنا.";
+                document.getElementById('welcome-text').innerText = "مرحباً بكم في موقعنا.";
             });
 
         // مؤقت 30 ثانية لإخفاء الشاشة الترحيبية
@@ -146,32 +147,5 @@
                 <div class="app-card">
                     <div class="app-info">
                         <div class="app-icon" onclick="zoomImage('${app.icon}')">
-                            <img src="${app.icon}" alt="">
-                        </div>
-                        <div class="app-details">
-                            <h3>${app.name}</h3>
-                        </div>
-                    </div>
-                    ${app.code ? `
-                    <div class="cod-container">
-                        <span>COD : ${app.code}</span>
-                        <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ">
-                    </div>` : ''}
-                    <div class="app-desc">${app.desc}</div>
-                    <a href="${app.link}" class="btn-download">
-                        <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
-                    </a>
-                </div>`;
-            });
-        }
-
-        function performSearch() {
-            const term = document.getElementById('searchField').value.toLowerCase();
-            const filtered = allApps.filter(app => app.name.toLowerCase().includes(term) || app.desc.toLowerCase().includes(term));
-            renderApps(filtered);
-            document.getElementById('searchModal').style.display = 'none';
-        }
-    </script>
-</body>
-    </html>
-    
+                            <img src="${app.icon}"
+        
