@@ -66,15 +66,10 @@
 </head>
 <body>
 
-    <!-- الشاشة الترحيبية -->
     <div id="welcome-screen">
         <div class="welcome-box">
             <div class="welcome-title">GLITCH SKIN FF</div>
-            <div class="welcome-text">
-                سلام عليكم ورحمة الله وبركاته، إخواني وأخواتي الكرام في هذا الموقع GLITCH SKIN FF.<br><br>
-                نرجو منكم استخدام هذه القلتشات فهي آمنة ومضمونة، ويمكنك استخدامها في حسابك الأساسي فهي مجربة وفعالة وبدون باند وبلاك لست.<br><br>
-                شكراً لكم على استخدام هذا الموقع.
-            </div>
+            <div class="welcome-text" id="welcome-content">جاري التحميل...</div>
         </div>
     </div>
 
@@ -108,6 +103,16 @@
     </div>
 
     <script>
+        // جلب نص الترحيب من ملف text
+        fetch('text')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('welcome-content').innerHTML = data;
+            })
+            .catch(err => {
+                document.getElementById('welcome-content').innerHTML = "مرحباً بكم في موقعنا.";
+            });
+
         // مؤقت 30 ثانية لإخفاء الشاشة الترحيبية
         setTimeout(function() {
             document.getElementById('welcome-screen').style.display = 'none';
@@ -168,5 +173,5 @@
         }
     </script>
 </body>
-            </html>
+    </html>
     
