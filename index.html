@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLITCH FREE FIRE SKIN</title>
+    <title>GLITCH FREE FIRE SK</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,16 +27,14 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; text-align: center; }
         
-        /* تعديل الكارد ليكون الصورة في الأعلى بكامل العرض */
-        .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 0; text-align: center; overflow: hidden; }
+        /* تصميم الزجاج الواضح للأيقونات */
+        .app-icon-wrapper { position: relative; display: inline-block; margin: 0 auto 15px auto; }
+        .app-icon { width: 100%; height: 200px; border-radius: 15px; cursor: pointer; overflow: hidden; background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2); }
+        .app-icon img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        .enlarge-btn { position: absolute; bottom: 10px; right: 10px; width: 30px; cursor: pointer; background: rgba(0,0,0,0.3); border-radius: 50%; padding: 5px; border: 1px solid rgba(255,255,255,0.3); }
         
-        .app-icon-wrapper { position: relative; width: 100%; height: 200px; cursor: pointer; background: #ffffff; }
-        .app-icon { width: 100%; height: 100%; }
-        .app-icon img { width: 100%; height: 100%; object-fit: cover; }
-        .enlarge-btn { position: absolute; bottom: 10px; right: 10px; width: 30px; cursor: pointer; background: rgba(0,0,0,0.6); border-radius: 50%; padding: 5px; }
-        
-        .app-details { padding: 15px; }
         .app-details h3 { color: #00ff00; margin-bottom: 5px; }
         .cod-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0; }
         .cod-text { color: #ffd700; font-size: 0.85rem; font-weight: bold; }
@@ -89,9 +87,9 @@
             apps.forEach(app => {
                 container.innerHTML += `
                 <div class="app-card">
-                    <div class="app-icon-wrapper" onclick="showFullImage('${app.icon}')">
-                        <div class="app-icon"><img src="${app.icon}"></div>
-                        <img src="https://images.icon-icons.com/1898/PNG/96/enlarge_121031.png" class="enlarge-btn">
+                    <div class="app-icon-wrapper" style="width:100%">
+                        <div class="app-icon" onclick="showFullImage('${app.icon}')"><img src="${app.icon}"></div>
+                        <img src="https://images.icon-icons.com/1898/PNG/96/enlarge_121031.png" class="enlarge-btn" onclick="showFullImage('${app.icon}')">
                     </div>
                     <div class="app-details">
                         <h3>${app.name}</h3>
