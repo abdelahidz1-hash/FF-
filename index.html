@@ -29,8 +29,9 @@
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; text-align: center; }
         
-        .app-icon { width: 218px; height: 218px; border-radius: 10px; cursor: pointer; overflow: hidden; margin: 0 auto 15px auto; background: #ffffff; }
-        .app-icon img { width: 100%; height: 100%; object-fit: contain; }
+        /* تعديل حجم الأيقونة */
+        .app-icon { width: 120px; height: 120px; border-radius: 10px; cursor: pointer; overflow: hidden; margin: 0 auto 15px auto; background: #ffffff; }
+        .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
         .app-details h3 { color: #00ff00; margin-bottom: 5px; }
         .cod-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0; }
@@ -85,16 +86,18 @@
                 container.innerHTML += `
                 <div class="app-card">
                     <div class="app-icon" onclick="showFullImage('${app.icon}')"><img src="${app.icon}"></div>
-                    <h3>${app.name}</h3>
-                    ${app.code ? `
-                    <div class="cod-wrapper">
-                        <div class="cod-text">COD : ${app.code}</div>
-                        <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyCode('${app.code}')">
-                    </div>` : ''}
-                    <div style="margin:10px 0; font-size:0.9rem;">${app.desc}</div>
-                    <a href="${app.link}" class="btn-download">
-                        <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png">
-                    </a>
+                    <div class="app-details">
+                        <h3>${app.name}</h3>
+                        ${app.code ? `
+                        <div class="cod-wrapper">
+                            <div class="cod-text">COD : ${app.code}</div>
+                            <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyCode('${app.code}')">
+                        </div>` : ''}
+                        <div style="margin:10px 0; font-size:0.9rem;">${app.desc}</div>
+                        <a href="${app.link}" class="btn-download">
+                            <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png">
+                        </a>
+                    </div>
                 </div>`;
             });
         }
