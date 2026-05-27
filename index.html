@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLITCH FREE FIRE SKIN</title>
+    <title>GLITCH FREE FIRE SK</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,8 +37,8 @@
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; text-align: center; }
         
-        /* الصورة الآن بحجم 75% من عرض المربع */
-        .app-icon { width: 75%; aspect-ratio: 1 / 1; border-radius: 10px; cursor: pointer; overflow: hidden; margin: 0 auto 15px auto; background: rgba(255,255,255,0.05); }
+        /* المربع الآن بحجم ثابت 95px */
+        .app-icon { width: 95px; height: 95px; border-radius: 10px; cursor: pointer; overflow: hidden; margin: 0 auto 15px auto; background: rgba(255,255,255,0.05); }
         .app-icon img { width: 100%; height: 100%; object-fit: contain; }
         
         .app-details h3 { color: #00ff00; margin-bottom: 5px; }
@@ -113,9 +113,5 @@
 
         function performSearch() {
             const term = document.getElementById('searchField').value.toLowerCase();
-            renderApps(allApps.filter(a => a.name.toLowerCase().includes(term) || a.desc.toLowerCase().includes(term)));
-            document.getElementById('searchModal').style.display = 'none';
-        }
-    </script>
-</body>
-</html>
+            renderApps(allApps.filter(a => a.name.toLowerCase().
+        
