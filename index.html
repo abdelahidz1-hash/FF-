@@ -3,21 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLITCH FREE FIRE SKIN</title>
+    <title>GLITCH FREE FIRE SK</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
 
     <style>
-        /* ستايل الشاشة الترحيبية */
-        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; }
-        #splash-screen img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .loader-container { position: absolute; bottom: 50px; width: 80%; height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; }
-        .loader-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #ffd700, #ffffff); animation: progress 5s linear forwards; }
-        @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
-
         :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
         body { background-color: var(--bg-color); color: var(--text-color); padding-bottom: 60px; }
@@ -37,7 +29,6 @@
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; text-align: center; }
         
-        /* المربع الآن بحجم ثابت 95px */
         .app-icon { width: 95px; height: 95px; border-radius: 10px; cursor: pointer; overflow: hidden; margin: 0 auto 15px auto; background: rgba(255,255,255,0.05); }
         .app-icon img { width: 100%; height: 100%; object-fit: contain; }
         
@@ -50,8 +41,6 @@
     </style>
 </head>
 <body>
-
-    <div id="splash-screen"><img src="https://i.ibb.co/4RJKQbng/1779362440088.png" alt="Welcome"><div class="loader-container"><div class="loader-bar"></div></div></div>
 
     <header>
         <div style="width: 40px;"></div>
@@ -75,7 +64,6 @@
     </div>
 
     <script>
-        setTimeout(() => document.getElementById('splash-screen').style.display = 'none', 5000);
         let allApps = [];
 
         fetch('items.json').then(r => r.json()).then(data => { allApps = data; renderApps(allApps); });
@@ -113,5 +101,9 @@
 
         function performSearch() {
             const term = document.getElementById('searchField').value.toLowerCase();
-            renderApps(allApps.filter(a => a.name.toLowerCase().
-        
+            renderApps(allApps.filter(a => a.name.toLowerCase().includes(term) || a.desc.toLowerCase().includes(term)));
+            document.getElementById('searchModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
