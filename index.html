@@ -7,21 +7,21 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ستايل الشاشة الترحيبية المحدثة */
+        /* ستايل الشاشة الترحيبية */
         #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 15px; }
         .welcome-box { background: #0b0b0b; border: 1px solid #333; padding: 25px; border-radius: 20px; text-align: center; max-width: 450px; box-shadow: 0 0 25px rgba(255,215,0,0.2); }
         .welcome-title { color: #ff0000; font-size: 1.6rem; font-weight: 300; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; font-family: 'Cairo', sans-serif; }
-        .welcome-text { color: #eee; font-size: 0.95rem; line-height: 1.6; font-family: 'Cairo', sans-serif; font-weight: 200; text-align: right; }
+        .welcome-text { color: #eee; font-size: 0.95rem; line-height: 1.6; font-family: 'Cairo', sans-serif; font-weight: 300; text-align: right; }
         .welcome-text ul { list-style: none; margin: 15px 0; }
         .welcome-text li { margin-bottom: 5px; }
         .welcome-btn { display: inline-block; margin-top: 20px; padding: 10px 30px; background: #ffd700; color: #000; border-radius: 50px; font-weight: bold; cursor: pointer; text-decoration: none; }
 
-        :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff); --muted-text: #888888; }
+        :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 200; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-bottom: 60px; }
 
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
@@ -60,7 +60,7 @@
         .app-desc { font-size: 0.9rem; color: #cccccc; margin-bottom: 20px; height: 45px; overflow: hidden; }
         
         .btn-download { background: var(--accent-color); color: #000; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border: none; font-weight: bold; }
-        .btn-download img { width: 24px; height: 24px; margin-left: 8px; }
+        .btn-download img { width: 24px; height: 24px; }
         
         .update-notice { text-align: center; font-size: 1rem; margin-top: 30px; color: #888; }
     </style>
@@ -147,7 +147,6 @@
                     </div>` : ''}
                     <div class="app-desc">${app.desc}</div>
                     <a href="${app.link}" class="btn-download">
-                        تحميل
                         <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
                     </a>
                 </div>`;
@@ -161,5 +160,5 @@
         }
     </script>
 </body>
-        </html>
-        
+    </html>
+                
