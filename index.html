@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLITCH FREE FIRE SKIN</title>
+    <title>GLITCH FREE FIRE SK</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
 
     <style>
-        /* ستايل الشاشة الترحيبية الجديدة */
-        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; cursor: pointer; }
-        .welcome-text { color: #00ff00; font-size: 1.2rem; line-height: 1.8; max-width: 500px; }
+        /* ستايل الشاشة الترحيبية */
+        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; cursor: pointer; }
+        .welcome-card { background: #111; border: 1px solid #333; padding: 30px; border-radius: 25px; text-align: center; max-width: 500px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .welcome-text { color: #00ff00; font-size: 1.2rem; line-height: 1.8; }
         .welcome-title { color: #ff0000; font-size: 1.8rem; font-weight: bold; margin-bottom: 20px; }
 
         :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff); --muted-text: #888888; }
@@ -67,13 +68,15 @@
 
     <!-- الشاشة الترحيبية -->
     <div id="welcome-screen" onclick="this.style.display='none'">
-        <div class="welcome-title">GLITCH SKIN FF</div>
-        <div class="welcome-text">
-            سلام عليكم ورحمة الله وبركاته، إخواني وأخواتي الكرام في هذا الموقع GLITCH SKIN FF.<br><br>
-            نرجو منكم استخدام هذه القلتشات فهي آمنة ومضمونة، ويمكنك استخدامها في حسابك الأساسي فهي مجربة وفعالة وبدون باند وبلاك لست.<br><br>
-            شكراً لكم على استخدام هذا الموقع.
-            <br><br>
-            <small>(اضغط في أي مكان للمتابعة)</small>
+        <div class="welcome-card">
+            <div class="welcome-title">GLITCH SKIN FF</div>
+            <div class="welcome-text">
+                سلام عليكم ورحمة الله وبركاته، إخواني وأخواتي الكرام في هذا الموقع GLITCH SKIN FF.<br><br>
+                نرجو منكم استخدام هذه القلتشات فهي آمنة ومضمونة، ويمكنك استخدامها في حسابك الأساسي فهي مجربة وفعالة وبدون باند وبلاك لست.<br><br>
+                شكراً لكم على استخدام هذا الموقع.
+                <br><br>
+                <small style="color: #666;">(اضغط في أي مكان للمتابعة)</small>
+            </div>
         </div>
     </div>
 
@@ -162,4 +165,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+    
