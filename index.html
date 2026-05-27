@@ -7,23 +7,16 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
 
     <style>
-        /* ستايل الشاشة الترحيبية */
-        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 15px; }
-        .welcome-box { background: #0b0b0b; border: 1px solid #333; padding: 25px; border-radius: 20px; text-align: center; max-width: 450px; box-shadow: 0 0 25px rgba(255,215,0,0.2); }
-        .welcome-title { color: #ff0000; font-size: 1.6rem; font-weight: 300; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; font-family: 'Cairo', sans-serif; }
-        .welcome-text { color: #eee; font-size: 0.95rem; line-height: 1.6; font-family: 'Cairo', sans-serif; font-weight: 300; text-align: right; }
-        .welcome-text ul { list-style: none; margin: 15px 0; }
-        .welcome-text li { margin-bottom: 5px; }
-        
-        /* الزر المحدث */
-        .welcome-btn-container { position: relative; margin-top: 25px; display: inline-flex; justify-content: center; align-items: center; }
-        .welcome-btn-glow { position: absolute; width: 60px; height: 60px; background: radial-gradient(circle, rgba(255,215,0,0.6) 0%, rgba(0,0,0,0) 70%); }
-        .welcome-btn-img { width: 45px; height: 45px; cursor: pointer; position: relative; z-index: 2; }
+        /* ستايل الشاشة الترحيبية المحدثة */
+        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .welcome-box { background: #0b0b0b; border: 1px solid #333; padding: 30px; border-radius: 25px; text-align: center; max-width: 500px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+        .welcome-text { color: #00ff00; font-size: 1.2rem; line-height: 1.8; }
+        .welcome-title { color: #ff0000; font-size: 1.8rem; font-weight: bold; margin-bottom: 20px; }
 
-        :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); }
+        :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff); --muted-text: #888888; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
         body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-bottom: 60px; }
@@ -37,11 +30,13 @@
         .action-btn { cursor: pointer; width: 36px; height: 36px; position: relative; z-index: 2; }
         .icon-glow { position: absolute; width: 45px; height: 45px; background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, rgba(0,0,0,0) 70%); z-index: 1; }
 
+        /* Modal Styles */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: #111; padding: 40px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; border: 1px solid #333; box-shadow: 0 0 20px rgba(255,255,255,0.1); width: 300px; height: 300px; }
         .modal-content input { background: #000; border: 1px solid #555; color: #fff; padding: 10px 20px; border-radius: 8px; outline: none; width: 100%; font-size: 1rem; }
         .send-btn { width: 50px; height: 50px; cursor: pointer; margin-top: 15px; }
 
+        /* Image Zoom Modal */
         #zoomModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; justify-content: center; align-items: center; }
         #fullImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
 
@@ -50,43 +45,35 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .app-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
-        .app-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.3); }
+        .app-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+        .app-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
         .app-info { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
         
         .app-icon { width: 60px; height: 60px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
-        .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; color: #00ff00; font-weight: 700; }
+        .app-details h3 { font-size: 1.1rem; margin-bottom: 4px; color: #00ff00; text-shadow: 0 0 8px #00ff00; }
         .cod-container { display: flex; align-items: center; gap: 10px; margin: 5px 0 15px 0; color: #ffd700; font-weight: bold; font-size: 0.9rem; }
         .copy-btn { width: 20px; height: 20px; cursor: pointer; }
         
-        .app-desc { font-size: 0.9rem; color: #cccccc; margin-bottom: 20px; height: 45px; overflow: hidden; }
+        .app-desc { font-size: 0.9rem; color: #ffffff; text-shadow: 0 0 5px #ffffff; margin-bottom: 20px; height: 45px; overflow: hidden; }
         
-        .btn-download { background: var(--accent-color); color: #000; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border: none; font-weight: bold; }
+        .btn-download { background: var(--accent-color); color: var(--text-color); text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; border: none; font-weight: bold; }
         .btn-download img { width: 24px; height: 24px; }
         
-        .update-notice { text-align: center; font-size: 1rem; margin-top: 30px; color: #888; }
+        .update-notice { text-align: center; font-size: 1.1rem; margin-top: 30px; background: linear-gradient(45deg, #ffffff, #ffd700, #ff0000, #ffff00, #00ff00, #0000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 8s ease infinite; }
     </style>
 </head>
 <body>
 
+    <!-- الشاشة الترحيبية -->
     <div id="welcome-screen">
         <div class="welcome-box">
-            <div class="welcome-title">GLITCH FREE FIRE SK</div>
+            <div class="welcome-title">GLITCH SKIN FF</div>
             <div class="welcome-text">
-                هل تبحث عن تجربة ألوان وتصاميم مميزة لحسابك في Free Fire؟ أهلاً بك في منصتك الموثوقة.<br><br>
-                نقدم لك مجموعة مختارة من القلتشات:<br>
-                <ul>
-                    <li>✅ أمان عالٍ: بدون مخاطر "البلاك ليست".</li>
-                    <li>🚀 تجربة سلسة: لا تؤثر على الأداء.</li>
-                    <li>💎 مضمونة ومجربة بعناية.</li>
-                </ul>
-                <small style="color:#ff4444;">⚠️ نصيحة: جرب دائماً على حساب احتياطي أولاً.</small>
-            </div>
-            <div class="welcome-btn-container" onclick="document.getElementById('welcome-screen').style.display='none'">
-                <div class="welcome-btn-glow"></div>
-                <img src="https://images.icon-icons.com/1132/PNG/96/1486348529-back-backwards-repeat-arrows-arrow_80455.png" class="welcome-btn-img" alt="ابدأ">
+                سلام عليكم ورحمة الله وبركاته، إخواني وأخواتي الكرام في هذا الموقع GLITCH SKIN FF.<br><br>
+                نرجو منكم استخدام هذه القلتشات فهي آمنة ومضمونة، ويمكنك استخدامها في حسابك الأساسي فهي مجربة وفعالة وبدون باند وبلاك لست.<br><br>
+                شكراً لكم على استخدام هذا الموقع.
             </div>
         </div>
     </div>
@@ -121,12 +108,24 @@
     </div>
 
     <script>
+        // مؤقت 30 ثانية لإخفاء الشاشة الترحيبية
+        setTimeout(function() {
+            document.getElementById('welcome-screen').style.display = 'none';
+        }, 30000);
+
         let allApps = [];
-        // جلب البيانات من ملف items.json
-        fetch('items.json').then(r => r.json()).then(data => { allApps = data; renderApps(allApps); });
+
+        fetch('items.json')
+            .then(response => response.json())
+            .then(data => {
+                allApps = data;
+                renderApps(allApps);
+            });
 
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => alert("تم نسخ الكود: " + text));
+            navigator.clipboard.writeText(text).then(() => {
+                alert("تم نسخ الكود: " + text);
+            });
         }
 
         function zoomImage(src) {
@@ -163,7 +162,8 @@
 
         function performSearch() {
             const term = document.getElementById('searchField').value.toLowerCase();
-            renderApps(allApps.filter(app => app.name.toLowerCase().includes(term) || app.desc.toLowerCase().includes(term)));
+            const filtered = allApps.filter(app => app.name.toLowerCase().includes(term) || app.desc.toLowerCase().includes(term));
+            renderApps(filtered);
             document.getElementById('searchModal').style.display = 'none';
         }
     </script>
