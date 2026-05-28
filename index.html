@@ -7,7 +7,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+    <!-- تم تحديث رابط الخط ليشمل وزن 700 -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700&display=swap" rel="stylesheet">
 
     <style>
         /* ستايل الشاشة الترحيبية */
@@ -19,23 +20,24 @@
             border: 3px solid #000000; 
             border-radius: 20px; 
             padding: 20px; 
-            max-width: 400px; /* تم تصغير العرض هنا */
+            max-width: 400px; 
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); 
         }
         .welcome-text { color: #000000; font-size: 0.9rem; line-height: 1.5; text-align: justify; font-weight: bold; }
-        .welcome-text b { color: #008000; } /* جعل العناوين باللون الأخضر */
+        .welcome-text b { color: #008000; } 
         
-        /* ستايل العنوان الجديد في الشاشة الترحيبية */
+        /* ستايل العنوان الجديد بخط كايرو وبوزن 700 */
         .welcome-title {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
             margin-bottom: 15px;
             background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
             background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradientMove 4s ease infinite;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             text-align: center;
         }
 
