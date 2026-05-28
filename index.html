@@ -72,9 +72,6 @@
         .modal-content input { background: #000; border: 1px solid #555; color: #fff; padding: 10px 20px; border-radius: 8px; outline: none; width: 100%; font-size: 1rem; }
         .send-btn { width: 50px; height: 50px; cursor: pointer; margin-top: 15px; }
 
-        #zoomModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; justify-content: center; align-items: center; }
-        #fullImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
-
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
@@ -83,11 +80,14 @@
         .app-card { background: var(--card-bg); border: 1px solid #333; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s; }
         .app-card:hover { transform: translateY(-5px); border-color: #ffd700; }
         
-        .app-icon { width: 105px; height: 105px; background: #111; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; margin-bottom: 15px; }
+        .app-icon { width: 105px; height: 105px; background: #111; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #ffd700; }
-        .cod-container { display: flex; align-items: center; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; }
+        
+        /* مربع الكود باللون الأسود الداكن */
+        .cod-container { display: flex; align-items: center; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 8px; border: 1px solid #333; }
+        
         .copy-btn { width: 20px; height: 20px; cursor: pointer; }
         
         .app-desc { font-size: 0.9rem; color: #cccccc; margin-bottom: 20px; height: 45px; overflow: hidden; width: 100%; }
@@ -114,8 +114,7 @@
                 <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ:</b> قلتشات مدروسة ومجربة.<br>
                 <img src="https://images.icon-icons.com/4089/PNG/96/money_education_laboratory_planet_finance_launch_missile_startup_spaceship_business_science_astronomy_spacecraft_space_rocket_icon_259588.png" class="rocket-icon"> <b>تجربة سلسة:</b> تصاميم خفيفة.<br>
                 <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>مضمونة:</b> نحن نهتم بسلامة حسابك.<br><br>
-                <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة:</b> جرب أي قلتش على حساب احتياطي.<br><br>
-                <img src="https://images.icon-icons.com/1919/PNG/96/lightbulbon_121975.png" class="bulb-icon"> <b>ملاحظة:</b> انقر على الصورة لرؤيتها.
+                <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة:</b> جرب أي قلتش على حساب احتياطي.<br>
             </div>
             <div class="start-btn">ابدأ التجربة الآن</div>
         </div>
@@ -141,10 +140,6 @@
         </div>
     </div>
 
-    <div id="zoomModal" onclick="this.style.display='none'">
-        <img id="fullImage" src="" alt="Full View">
-    </div>
-
     <div class="container">
         <div class="apps-grid" id="apps-container"></div>
         <p class="update-notice">سوف يتم تحديث قلتشات تلقائيا</p>
@@ -166,18 +161,13 @@
             });
         }
 
-        function zoomImage(src) {
-            document.getElementById('fullImage').src = src;
-            document.getElementById('zoomModal').style.display = 'flex';
-        }
-
         function renderApps(apps) {
             const container = document.getElementById('apps-container');
             container.innerHTML = '';
             apps.forEach(app => {
                 container.innerHTML += `
                 <div class="app-card">
-                    <div class="app-icon" onclick="zoomImage('${app.icon}')">
+                    <div class="app-icon">
                         <img src="${app.icon}" alt="">
                     </div>
                     <div class="app-details">
@@ -204,4 +194,5 @@
         }
     </script>
 </body>
-</html>
+                    </html>
+            
