@@ -45,11 +45,11 @@
         .rocket-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
         .bulb-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
 
-        :root { --card-bg: rgba(0, 0, 0, 0.7); --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); }
+        /* تغيير خلفية البطاقات إلى الأسود الداكن */
+        :root { --card-bg: #000000; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
         
-        /* تغيير خلفية الصفحة إلى ذهبي، فضي، وأبيض */
         body { 
             background: linear-gradient(135deg, #ffd700, #c0c0c0, #ffffff);
             background-attachment: fixed;
@@ -80,10 +80,10 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .app-card { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s; }
+        .app-card { background: var(--card-bg); border: 1px solid #333; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s; }
         .app-card:hover { transform: translateY(-5px); border-color: #ffd700; }
         
-        .app-icon { width: 105px; height: 105px; background: rgba(255, 255, 255, 0.1); border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; margin-bottom: 15px; }
+        .app-icon { width: 105px; height: 105px; background: #111; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #ffd700; }
@@ -204,5 +204,4 @@
         }
     </script>
 </body>
-        </html>
-    
+</html>
