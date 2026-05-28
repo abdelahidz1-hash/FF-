@@ -76,16 +76,34 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .app-card { background: var(--card-bg); border: 1px solid #333; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: transform 0.2s; }
-        .app-card:hover { transform: translateY(-5px); border-color: #ffd700; }
+        /* كارت بإطار أخضر مضيء */
+        .app-card { 
+            background: var(--card-bg); 
+            border: 2px solid #00ff00; 
+            border-radius: 12px; 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+            transition: transform 0.2s, box-shadow 0.3s; 
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+        .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(0, 255, 0, 0.6); border-color: #00ff00; }
         
         .app-icon { width: 105px; height: 105px; background: #111; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* أسماء القلتشات باللون الأخضر المضيء */
         .app-details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #00ff00; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; }
         
-        .cod-container { display: flex; align-items: center; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 8px; }
+        .cod-container { 
+            display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
+            border: 2px solid transparent;
+            background-image: linear-gradient(#000, #000), linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
         
         .copy-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
         .copy-btn { width: 24px; height: 24px; cursor: pointer; position: relative; z-index: 2; }
@@ -198,5 +216,5 @@
         }
     </script>
 </body>
-    </html>
-            
+                </html>
+    
