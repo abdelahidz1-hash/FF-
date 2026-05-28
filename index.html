@@ -11,27 +11,26 @@
 
     <style>
         /* ستايل الشاشة الترحيبية */
-        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; cursor: pointer; }
+        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; text-align: center; cursor: pointer; }
         
-        /* تعديل اللافتة: خلفية ذهبي وفضي وأبيض مضيئ */
+        /* تعديل اللافتة: تصغير الحجم قليلاً */
         .welcome-banner { 
             background: linear-gradient(135deg, #ffd700, #c0c0c0, #ffffff); 
             border: 3px solid #000000; 
             border-radius: 20px; 
-            padding: 30px; 
-            max-width: 500px; 
+            padding: 20px; 
+            max-width: 400px; /* تم تصغير العرض هنا */
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); 
         }
-        .welcome-text { color: #000000; font-size: 1rem; line-height: 1.6; text-align: justify; font-weight: bold; }
+        .welcome-text { color: #000000; font-size: 0.9rem; line-height: 1.5; text-align: justify; font-weight: bold; }
         .welcome-text b { color: #008000; } /* جعل العناوين باللون الأخضر */
-        .start-btn { margin-top: 25px; padding: 10px 30px; background: #000; color: #ffd700; border-radius: 25px; font-weight: bold; display: inline-block; }
+        .start-btn { margin-top: 20px; padding: 8px 25px; background: #000; color: #ffd700; border-radius: 25px; font-weight: bold; display: inline-block; font-size: 0.9rem; }
         
-        .check-icon { width: 16px; height: 16px; vertical-align: middle; margin-left: 5px; }
-        .danger-icon { width: 16px; height: 16px; vertical-align: middle; margin-left: 5px; }
-        .repair-icon { width: 16px; height: 16px; vertical-align: middle; margin-left: 5px; }
-        .rocket-icon { width: 16px; height: 16px; vertical-align: middle; margin-left: 5px; }
-        .bulb-icon { width: 16px; height: 16px; vertical-align: middle; margin-left: 5px; }
-        .custom-icon { width: 40px; height: 40px; vertical-align: middle; margin: 0 5px; }
+        .check-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
+        .danger-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
+        .repair-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
+        .rocket-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
+        .bulb-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
 
         :root { --bg-color: #000000; --card-bg: #0b0b0b; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #ffd700, #ffffff, #b8860b); --border-glow: linear-gradient(45deg, #ffd700, #c0c0c0, #ffffff); --muted-text: #888888; }
 
@@ -86,14 +85,17 @@
     <div id="welcome-screen" onclick="this.style.display='none'">
         <div class="welcome-banner">
             <div class="welcome-text">
-                هل تبحث عن <img src="https://i.ibb.co/HD19LFxP/Picsart-26-05-28-21-58-46-119.png" class="custom-icon"> سكنات أو <img src="https://i.ibb.co/MDrvqgCc/Picsart-26-05-28-22-03-09-928.png" class="custom-icon"> رقصات أو أسلحة أو تصاميم...الخ لحسابك في Free Fire؟ أهلاً بك في منصتك الموثوقة.<br><br>
+                <center style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                    <img src="https://i.ibb.co/MDrvqgCc/Picsart-26-05-28-22-03-09-928.png" style="width: 60px;">
+                    <img src="https://i.ibb.co/RTTzmNJc/Picsart-26-05-28-22-18-02-445.png" style="width: 60px;">
+                </center>
+                هل تبحث عن سكنات أو رقصات أو أسلحة أو تصاميم...الخ لحسابك في Free Fire؟ أهلاً بك في منصتك الموثوقة.<br><br>
                 نقدم لك في GLITCH SKIN FF مجموعة مختارة تم تصميمها واختبارها بعناية فائقة لتضمن لك:<br>
-                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ:</b> قلتشات مدروسة ومجربة لتعمل بكفاءة دون مخاطر "البلاك ليست".<br>
-                <img src="https://images.icon-icons.com/4089/PNG/96/money_education_laboratory_planet_finance_launch_missile_startup_spaceship_business_science_astronomy_spacecraft_space_rocket_icon_259588.png" class="rocket-icon"> <b>تجربة سلسة:</b> تصاميم خفيفة لا تؤثر على أداء جهازك.<br>
-                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>مضمونة ومجربة:</b> نحن نهتم بسلامة حسابك.<br>
-                <img src="https://images.icon-icons.com/4034/PNG/96/repair_toolbox_screw_construction_screwdriver_equipment_icon_256423.png" class="repair-icon"> <b>حرية الاختيار:</b> نوفر لك خيارات متنوعة.<br><br>
-                <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة تقنية من المطور:</b> ننصح المبتدئين دائماً بتجربة أي قلتش جديد على حساب احتياطي قبل استخدامه في حسابك الأساسي.<br><br>
-                <img src="https://images.icon-icons.com/1919/PNG/96/lightbulbon_121975.png" class="bulb-icon"> <b>ملاحظة:</b> لرؤية صورة القلتش، يرجى النقر على الصورة.
+                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ:</b> قلتشات مدروسة ومجربة.<br>
+                <img src="https://images.icon-icons.com/4089/PNG/96/money_education_laboratory_planet_finance_launch_missile_startup_spaceship_business_science_astronomy_spacecraft_space_rocket_icon_259588.png" class="rocket-icon"> <b>تجربة سلسة:</b> تصاميم خفيفة.<br>
+                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>مضمونة:</b> نحن نهتم بسلامة حسابك.<br><br>
+                <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة:</b> جرب أي قلتش على حساب احتياطي.<br><br>
+                <img src="https://images.icon-icons.com/1919/PNG/96/lightbulbon_121975.png" class="bulb-icon"> <b>ملاحظة:</b> انقر على الصورة لرؤيتها.
             </div>
             <div class="start-btn">ابدأ التجربة الآن</div>
         </div>
