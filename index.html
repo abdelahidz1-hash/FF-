@@ -145,6 +145,7 @@
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('apps-container');
+                container.innerHTML = ''; // تفريغ الحاوية قبل التعبئة
                 data.forEach(app => {
                     container.innerHTML += `
                     <div class="app-card">
@@ -168,7 +169,8 @@
                         </a>
                     </div>`;
                 });
-            });
+            })
+            .catch(error => console.error('Error loading JSON:', error));
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
@@ -178,4 +180,4 @@
     </script>
 </body>
                     </html>
-    
+                    
