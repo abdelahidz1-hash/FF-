@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLITCH FREE FIRE SKIN</title>
+    <title>GLITCH FREE FIRE SK</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,18 +60,20 @@
         
         .app-card { 
             background: #0a0a0a; 
-            border: 3px solid;
-            border-image: linear-gradient(45deg, #ffd700, #e0e0e0, #ffffff) 1;
-            border-radius: 12px; 
+            border: 2px solid transparent;
+            border-radius: 15px; 
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: linear-gradient(#0a0a0a, #0a0a0a), linear-gradient(45deg, #ffd700, #e0e0e0, #ffffff);
             padding: 20px; 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             text-align: center; 
             transition: transform 0.2s, box-shadow 0.3s; 
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
         }
-        .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(255, 215, 0, 0.4); }
+        .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
         
         .app-icon { width: 105px; height: 105px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
