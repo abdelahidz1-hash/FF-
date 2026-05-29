@@ -39,9 +39,8 @@
         .check-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
         .danger-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
         .rocket-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
-        .bulb-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
 
-        :root { --card-bg: #000000; --text-color: #ffffff; --accent-color: linear-gradient(45deg, #333, #000, #333); }
+        :root { --card-bg: #000000; --text-color: #ffffff; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
         
@@ -55,8 +54,6 @@
 
         header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
         header h1 { font-size: 1rem; letter-spacing: 1px; color: #fff; font-weight: bold; }
-        
-        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
@@ -135,9 +132,7 @@
     </div>
 
     <header>
-        <div class="header-title-container">
-            <h1>GLITCH FREE FIRE</h1>
-        </div>
+        <h1>GLITCH FREE FIRE</h1>
     </header>
 
     <div class="container">
@@ -146,13 +141,33 @@
     </div>
 
     <script>
-        let allApps = [];
-
         fetch('items.json')
             .then(response => response.json())
             .then(data => {
-                allApps = data;
-                renderApps(allApps);
+                const container = document.getElementById('apps-container');
+                data.forEach(app => {
+                    container.innerHTML += `
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <img src="${app.icon}" alt="">
+                        </div>
+                        <div class="app-details">
+                            <h3>${app.name}</h3>
+                        </div>
+                        ${app.code ? `
+                        <div class="cod-container">
+                            <span>COD : ${app.code}</span>
+                            <div class="copy-wrapper">
+                                <div class="copy-glow"></div>
+                                <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ" style="filter: invert(1);">
+                            </div>
+                        </div>` : ''}
+                        <div class="app-desc">${app.desc}</div>
+                        <a href="${app.link}" class="btn-download">
+                            <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
+                        </a>
+                    </div>`;
+                });
             });
 
         function copyToClipboard(text) {
@@ -160,22 +175,7 @@
                 alert("تم نسخ الكود: " + text);
             });
         }
-
-        function renderApps(apps) {
-            const container = document.getElementById('apps-container');
-            container.innerHTML = '';
-            apps.forEach(app => {
-                container.innerHTML += `
-                <div class="app-card">
-                    <div class="app-icon">
-                        <img src="${app.icon}" alt="">
-                    </div>
-                    <div class="app-details">
-                        <h3>${app.name}</h3>
-                    </div>
-                    ${app.code ? `
-                    <div class="cod-container">
-                        <span>COD : ${app.code}</span>
-                        <div class="copy-wrapper">
-                            <div class="copy-glow"></div>
-                            <img src="
+    </script>
+</body>
+        </html>
+        
