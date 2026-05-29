@@ -40,7 +40,7 @@
         .danger-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
         .rocket-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
 
-        :root { --card-bg: #000000; --text-color: #ffffff; }
+        :root { --card-bg: #0a0a0a; --text-color: #ffffff; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
         
@@ -59,7 +59,7 @@
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
         .app-card { 
-            background: #0a0a0a; 
+            background: var(--card-bg); 
             border: 2px solid #00ff00; 
             border-radius: 12px; 
             padding: 20px; 
@@ -78,7 +78,7 @@
         .app-details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #00ff00; text-shadow: 0 0 10px #00ff00; }
         
         .cod-container { 
-            display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
+            display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: var(--card-bg); padding: 10px; border-radius: 10px; 
             border: 1px solid #333;
         }
         
@@ -145,7 +145,7 @@
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('apps-container');
-                container.innerHTML = ''; // تفريغ الحاوية قبل التعبئة
+                container.innerHTML = ''; 
                 data.forEach(app => {
                     container.innerHTML += `
                     <div class="app-card">
@@ -179,5 +179,5 @@
         }
     </script>
 </body>
-                    </html>
-                    
+    </html>
+    
