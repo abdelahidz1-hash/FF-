@@ -60,7 +60,8 @@
         
         .app-card { 
             background: #0a0a0a; 
-            border: 2px solid #00ff00; 
+            border: 3px solid;
+            border-image: linear-gradient(45deg, #ffd700, #e0e0e0, #ffffff) 1;
             border-radius: 12px; 
             padding: 20px; 
             display: flex; 
@@ -68,14 +69,14 @@
             align-items: center; 
             text-align: center; 
             transition: transform 0.2s, box-shadow 0.3s; 
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
         }
-        .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); border-color: #00ff00; }
+        .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(255, 215, 0, 0.4); }
         
         .app-icon { width: 105px; height: 105px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
-        .app-details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+        .app-details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #ffffff; }
         
         .cod-container { 
             display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
@@ -84,7 +85,7 @@
         
         .copy-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
         .copy-btn { width: 24px; height: 24px; cursor: pointer; position: relative; z-index: 2; }
-        .copy-glow { position: absolute; width: 35px; height: 35px; background: radial-gradient(circle, rgba(0,255,0,0.3) 0%, rgba(0,0,0,0) 70%); z-index: 1; }
+        .copy-glow { position: absolute; width: 35px; height: 35px; background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(0,0,0,0) 70%); z-index: 1; }
         
         .app-desc { font-size: 0.9rem; color: #cccccc; margin-bottom: 20px; height: 45px; overflow: hidden; width: 100%; }
         
