@@ -75,9 +75,9 @@
         }
         .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
         
-        /* تم ضبط أبعاد الأيقونة والحفاظ على نسبة الصورة */
-        .app-icon { width: 100%; height: 200px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
-        .app-icon img { width: 100%; height: 100%; object-fit: contain; }
+        /* تم تحديث أبعاد الأيقونة لتكون 1024x1024 */
+        .app-icon { width: 1024px; height: 1024px; max-width: 200px; max-height: 200px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
+        .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 10px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
         
@@ -147,5 +147,41 @@
 
     <script>
         fetch('items.json')
-            .then(response => response.
-    
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('apps-container');
+                container.innerHTML = '';
+                data.forEach(app => {
+                    container.innerHTML += `
+                    <div class="app-card">
+                        <div class="app-icon">
+                            <img src="${app.icon}" alt="">
+                        </div>
+                        <div class="app-details">
+                            <h3>${app.name}</h3>
+                        </div>
+                        ${app.code ? `
+                        <div class="cod-container">
+                            <span>COD : ${app.code}</span>
+                            <div class="copy-wrapper">
+                                <div class="copy-glow"></div>
+                                <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ" style="filter: invert(1);">
+                            </div>
+                        </div>` : ''}
+                        <div class="app-desc">${app.desc}</div>
+                        <a href="${app.link}" class="btn-download" download>
+                            <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
+                        </a>
+                    </div>`;
+                });
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("تم نسخ الكود: " + text);
+            });
+        }
+    </script>
+</body>
+</html>
