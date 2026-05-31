@@ -153,18 +153,9 @@
     <script>
         const FIREBASE_URL = "https://glitch-ff-4c081-default-rtdb.firebaseio.com/";
 
-        function convertToCircleNumbers(num) {
-            const circleNumbers = ["⓿", "❶", "❷", "❸", "❹", "❺", "❻", "❼", "❽", "❾", "❿"];
-            const strNum = num.toString();
-            let result = "";
-            for (let char of strNum) {
-                if (parseInt(char) >= 0 && parseInt(char) <= 10) {
-                    result += circleNumbers[parseInt(char)];
-                } else {
-                    result += char;
-                }
-            }
-            return result;
+        // دالة لتحويل الأرقام إلى Fullwidth
+        function toFullWidth(num) {
+            return num.toString().replace(/[0-9]/g, (s) => String.fromCharCode(s.charCodeAt(0) + 0xFEE0));
         }
 
         function loadLikes(id, elementId) {
@@ -172,7 +163,7 @@
                 .then(res => res.json())
                 .then(data => {
                     const count = data ? (data.count || 0) : 0;
-                    document.getElementById(elementId).innerText = convertToCircleNumbers(count);
+                    document.getElementById(elementId).innerText = toFullWidth(count);
                 });
         }
 
@@ -188,7 +179,7 @@
                         <div class="app-icon"><img src="${app.icon}" alt=""></div>
                         <div class="app-details"><h3>${app.name}</h3></div>
                         <div class="actions-container">
-                            <span class="like-count" id="${likeSpanId}">⓿</span>
+                            <span class="like-count" id="${likeSpanId}">${toFullWidth(0)}</span>
                             <img src="https://images.icon-icons.com/3975/PNG/96/hand_favorite_like_thumbs_up_icon_251893.png" class="like-btn" onclick="addLike('${app.id}', '${likeSpanId}')" alt="إعجاب">
                             <a href="${app.link}" class="btn-download" download>
                                 <img src="https://images.icon-icons.com/1182/PNG/96/1490129349-rounded05_82190.png" alt="تحميل">
@@ -225,7 +216,7 @@
                         method: 'PUT',
                         body: JSON.stringify({ count: newCount })
                     }).then(() => {
-                        document.getElementById(elementId).innerText = convertToCircleNumbers(newCount);
+                        document.getElementById(elementId).innerText = toFullWidth(newCount);
                         localStorage.setItem('like_' + id, now);
                         alert("شكراً لك! تم تسجيل إعجابك.");
                     });
