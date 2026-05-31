@@ -95,15 +95,15 @@
         /* تم إخفاء الوصف هنا */
         .app-desc { display: none; }
         
+        /* تعديل زر التحميل */
         .btn-download { 
             background: linear-gradient(135deg, #ffd700, #e0e0e0, #ffffff); 
             color: #000; 
-            width: 100%; 
-            text-align: center; 
-            padding: 10px; 
+            width: auto; 
+            padding: 8px 30px; 
             border-radius: 8px; 
             text-decoration: none; 
-            font-size: 0.95rem; 
+            font-size: 0.9rem; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -112,7 +112,7 @@
             border: none;
             cursor: pointer;
         }
-        .btn-download img { width: 24px; height: 24px; }
+        .btn-download img { width: 18px; height: 18px; margin-right: 5px; }
         
         .update-notice { 
             text-align: center; 
@@ -181,7 +181,7 @@
                         </div>` : ''}
                         <div class="app-desc">${app.desc}</div>
                         <a href="${app.link}" class="btn-download" download>
-                            <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
+                            <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل"> تحميل
                         </a>
                     </div>`;
                 });
