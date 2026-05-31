@@ -80,10 +80,11 @@
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 15px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
         
-        .actions-container { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+        .actions-container { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
         
         .like-btn { width: 32px; height: 32px; cursor: pointer; filter: invert(1); transition: transform 0.2s; }
         .like-btn:active { transform: scale(1.2); }
+        .like-count { font-size: 1rem; font-weight: bold; color: #fff; min-width: 20px; }
         
         .cod-container { 
             display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
@@ -156,22 +157,30 @@
     <script>
         const FIREBASE_URL = "https://glitch-ff-4c081-default-rtdb.firebaseio.com/";
 
+        // دالة لجلب عدد اللايكات الحالي
+        function loadLikes(id, elementId) {
+            fetch(`${FIREBASE_URL}items/${id}/likes.json`)
+                .then(res => res.json())
+                .then(data => {
+                    const count = data ? (data.count || 0) : 0;
+                    document.getElementById(elementId).innerText = count;
+                });
+        }
+
         fetch('items.json')
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('apps-container');
                 container.innerHTML = '';
                 data.forEach(app => {
+                    const likeSpanId = `like-count-${app.id}`;
                     container.innerHTML += `
                     <div class="app-card">
-                        <div class="app-icon">
-                            <img src="${app.icon}" alt="">
-                        </div>
-                        <div class="app-details">
-                            <h3>${app.name}</h3>
-                        </div>
+                        <div class="app-icon"><img src="${app.icon}" alt=""></div>
+                        <div class="app-details"><h3>${app.name}</h3></div>
                         <div class="actions-container">
-                            <img src="https://images.icon-icons.com/3523/PNG/96/user_interface_hand_gesture_like_ui_thumbsup_icon_221209.png" class="like-btn" onclick="addLike('${app.id}')" alt="إعجاب">
+                            <img src="https://images.icon-icons.com/3523/PNG/96/user_interface_hand_gesture_like_ui_thumbsup_icon_221209.png" class="like-btn" onclick="addLike('${app.id}', '${likeSpanId}')" alt="إعجاب">
+                            <span class="like-count" id="${likeSpanId}">0</span>
                             <a href="${app.link}" class="btn-download" download>
                                 <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
                             </a>
@@ -184,19 +193,24 @@
                                 <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ" style="filter: invert(1);">
                             </div>
                         </div>` : ''}
-                        <div class="app-desc">${app.desc}</div>
                     </div>`;
+                    loadLikes(app.id, likeSpanId);
                 });
-            })
-            .catch(error => console.error('Error loading JSON:', error));
+            });
 
-        function addLike(id) {
-            fetch(`${FIREBASE_URL}items/${id}/likes.json`, {
-                method: 'PATCH',
-                body: JSON.stringify({ count: 1 })
-            }).then(() => {
-                alert("شكراً لك! تم تسجيل الإعجاب.");
-            }).catch(err => console.error(err));
+        function addLike(id, elementId) {
+            fetch(`${FIREBASE_URL}items/${id}/likes.json`)
+                .then(res => res.json())
+                .then(data => {
+                    let currentCount = data ? (data.count || 0) : 0;
+                    let newCount = currentCount + 1;
+                    fetch(`${FIREBASE_URL}items/${id}/likes.json`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ count: newCount })
+                    }).then(() => {
+                        document.getElementById(elementId).innerText = newCount;
+                    });
+                });
         }
 
         function copyToClipboard(text) {
