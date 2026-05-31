@@ -34,7 +34,6 @@
         }
         .welcome-text b { color: #ffd700; } 
         
-        /* تنسيق صورة العنوان مصغرة */
         .welcome-title-img {
             max-width: 70%;
             height: auto;
@@ -44,7 +43,6 @@
             margin-right: auto;
         }
 
-        /* زر البدء بدون إطار */
         .start-btn { 
             margin-top: 20px; 
             background: transparent; 
@@ -94,7 +92,7 @@
         }
         .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
         
-        .app-icon { width: 1024px; height: 1024px; max-width: 200px; max-height: 200px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
+        .app-icon { width: 200px; height: 200px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 15px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
@@ -114,28 +112,10 @@
         .copy-btn { width: 24px; height: 24px; cursor: pointer; position: relative; z-index: 2; }
         .copy-glow { position: absolute; width: 35px; height: 35px; background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(0,0,0,0) 70%); z-index: 1; }
         
-        .app-desc { display: none; }
-        
-        .btn-download { 
-            width: 32px;
-            height: 32px;
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border: none;
-            cursor: pointer;
-        }
+        .btn-download { width: 32px; height: 32px; text-decoration: none; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; }
         .btn-download img { width: 32px; height: 32px; }
         
-        .update-notice { 
-            text-align: center; 
-            font-size: 1.1rem; 
-            margin-top: 30px; 
-            font-weight: 300; 
-            color: #fff;
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
-        }
+        .update-notice { text-align: center; font-size: 1.1rem; margin-top: 30px; font-weight: 300; color: #fff; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; }
     </style>
 </head>
 <body>
@@ -180,7 +160,7 @@
         }
 
         function loadLikes(id, elementId) {
-            fetch(`${FIREBASE_URL}items/${id}/likes.json`)
+            fetch(`${FIREBASE_URL}likes/${id}.json`)
                 .then(res => res.json())
                 .then(data => {
                     const count = data ? (data.count || 0) : 0;
@@ -220,25 +200,24 @@
             });
 
         function addLike(id, elementId) {
-            const lastLike = localStorage.getItem('like_' + id);
-            const now = new Date().getTime();
-
-            if (lastLike && (now - lastLike < 86400000)) {
-                alert("لقد قمت بالإعجاب بهذا العنصر بالفعل، يمكنك الإعجاب مجدداً بعد 24 ساعة.");
+            const storageKey = 'like_' + id;
+            if (localStorage.getItem(storageKey)) {
+                alert("لقد قمت بالإعجاب بهذا العنصر بالفعل.");
                 return;
             }
 
-            fetch(`${FIREBASE_URL}items/${id}/likes.json`)
+            fetch(`${FIREBASE_URL}likes/${id}.json`)
                 .then(res => res.json())
                 .then(data => {
                     let currentCount = data ? (data.count || 0) : 0;
                     let newCount = currentCount + 1;
-                    fetch(`${FIREBASE_URL}items/${id}/likes.json`, {
+                    
+                    fetch(`${FIREBASE_URL}likes/${id}.json`, {
                         method: 'PUT',
                         body: JSON.stringify({ count: newCount })
                     }).then(() => {
                         document.getElementById(elementId).innerText = toFullWidth(newCount);
-                        localStorage.setItem('like_' + id, now);
+                        localStorage.setItem(storageKey, 'true');
                         alert("شكراً لك! تم تسجيل إعجابك.");
                     });
                 });
@@ -251,4 +230,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+    
