@@ -157,7 +157,6 @@
     <script>
         const FIREBASE_URL = "https://glitch-ff-4c081-default-rtdb.firebaseio.com/";
 
-        // دالة لجلب عدد اللايكات الحالي
         function loadLikes(id, elementId) {
             fetch(`${FIREBASE_URL}items/${id}/likes.json`)
                 .then(res => res.json())
@@ -199,6 +198,14 @@
             });
 
         function addLike(id, elementId) {
+            const lastLike = localStorage.getItem('like_' + id);
+            const now = new Date().getTime();
+
+            if (lastLike && (now - lastLike < 86400000)) {
+                alert("لقد قمت بالإعجاب بهذا العنصر بالفعل، يمكنك الإعجاب مجدداً بعد 24 ساعة.");
+                return;
+            }
+
             fetch(`${FIREBASE_URL}items/${id}/likes.json`)
                 .then(res => res.json())
                 .then(data => {
@@ -209,6 +216,8 @@
                         body: JSON.stringify({ count: newCount })
                     }).then(() => {
                         document.getElementById(elementId).innerText = newCount;
+                        localStorage.setItem('like_' + id, now);
+                        alert("شكراً لك! تم تسجيل إعجابك.");
                     });
                 });
         }
