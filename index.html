@@ -80,11 +80,12 @@
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 15px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
         
-        .actions-container { display: flex; align-items: center; gap: 20px; margin-bottom: 10px; }
+        .actions-container { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
         
-        .like-btn { width: 32px; height: 32px; cursor: pointer; filter: invert(1); transition: transform 0.2s; }
+        .like-btn, .btn-download { width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .like-btn { filter: invert(1); transition: transform 0.2s; }
         .like-btn:active { transform: scale(1.2); }
-        .like-count { font-size: 1rem; font-weight: bold; color: #fff; min-width: 20px; }
+        .count-val { font-size: 1rem; font-weight: bold; color: #fff; min-width: 20px; }
         
         .cod-container { 
             display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
@@ -94,20 +95,6 @@
         .copy-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
         .copy-btn { width: 24px; height: 24px; cursor: pointer; position: relative; z-index: 2; }
         .copy-glow { position: absolute; width: 35px; height: 35px; background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(0,0,0,0) 70%); z-index: 1; }
-        
-        .app-desc { display: none; }
-        
-        .btn-download { 
-            width: 32px;
-            height: 32px;
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border: none;
-            cursor: pointer;
-        }
-        .btn-download img { width: 32px; height: 32px; }
         
         .update-notice { 
             text-align: center; 
@@ -125,25 +112,16 @@
         <div class="welcome-banner">
             <div class="welcome-title">GLITCH SKIN FF</div>
             <div class="welcome-text">
-                <center style="display: flex; justify-content: center; gap: 5px; margin-bottom: 10px;">
-                    <img src="https://i.ibb.co/MDrvqgCc/Picsart-26-05-28-22-03-09-928.png" style="width: 50px;">
-                    <img src="https://i.ibb.co/RTTzmNJc/Picsart-26-05-28-22-18-02-445.png" style="width: 50px;">
-                    <img src="https://i.ibb.co/WWTn1304/Picsart-26-05-28-22-27-13-388.png" style="width: 50px;">
-                </center>
                 هل تبحث عن سكنات أو رقصات أو أسلحة أو تصاميم...الخ لحسابك في Free Fire؟ أهلاً بك في منصتك الموثوقة.<br><br>
-                نقدم لك في GLITCH SKIN FF مجموعة مختارة تم تصميمها واختبارها بعناية فائقة لتضمن لك:<br>
-                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ:</b> قلتشات مدروسة ومجربة.<br>
-                <img src="https://images.icon-icons.com/4089/PNG/96/money_education_laboratory_planet_finance_launch_missile_startup_spaceship_business_science_astronomy_spacecraft_space_rocket_icon_259588.png" class="rocket-icon"> <b>تجربة سلسة:</b> تصاميم خفيفة.<br>
-                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>مضمونة:</b> نحن نهتم بسلامة حسابك.<br><br>
-                <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة:</b> جرب أي قلتش على حساب احتياطي.<br>
+                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ</b><br>
+                <img src="https://images.icon-icons.com/4089/PNG/96/money_education_laboratory_planet_finance_launch_missile_startup_spaceship_business_science_astronomy_spacecraft_space_rocket_icon_259588.png" class="rocket-icon"> <b>تجربة سلسة</b><br>
+                <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة:</b> جرب على حساب احتياطي.<br>
             </div>
             <div class="start-btn" onclick="document.getElementById('welcome-screen').style.display='none'">ابدأ التجربة الآن</div>
         </div>
     </div>
 
-    <header>
-        <h1>GLITCH FREE FIRE</h1>
-    </header>
+    <header><h1>GLITCH FREE FIRE</h1></header>
 
     <div class="container">
         <div class="apps-grid" id="apps-container"></div>
@@ -153,17 +131,18 @@
     <script>
         const FIREBASE_URL = "https://glitch-ff-4c081-default-rtdb.firebaseio.com/";
 
-        // دالة لتحويل الأرقام إلى Fullwidth
         function toFullWidth(num) {
             return num.toString().replace(/[0-9]/g, (s) => String.fromCharCode(s.charCodeAt(0) + 0xFEE0));
         }
 
-        function loadLikes(id, elementId) {
-            fetch(`${FIREBASE_URL}items/${id}/likes.json`)
+        function loadStats(id, likeId, downId) {
+            fetch(`${FIREBASE_URL}items/${id}.json`)
                 .then(res => res.json())
                 .then(data => {
-                    const count = data ? (data.count || 0) : 0;
-                    document.getElementById(elementId).innerText = toFullWidth(count);
+                    const likes = data ? (data.likes?.count || 0) : 0;
+                    const downloads = data ? (data.downloads?.count || 0) : 0;
+                    document.getElementById(likeId).innerText = toFullWidth(likes);
+                    document.getElementById(downId).innerText = toFullWidth(downloads);
                 });
         }
 
@@ -171,63 +150,55 @@
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('apps-container');
-                container.innerHTML = '';
                 data.forEach(app => {
-                    const likeSpanId = `like-count-${app.id}`;
+                    const likeId = `like-${app.id}`;
+                    const downId = `down-${app.id}`;
                     container.innerHTML += `
                     <div class="app-card">
-                        <div class="app-icon"><img src="${app.icon}" alt=""></div>
+                        <div class="app-icon"><img src="${app.icon}"></div>
                         <div class="app-details"><h3>${app.name}</h3></div>
                         <div class="actions-container">
-                            <span class="like-count" id="${likeSpanId}">${toFullWidth(0)}</span>
-                            <img src="https://images.icon-icons.com/3975/PNG/96/hand_favorite_like_thumbs_up_icon_251893.png" class="like-btn" onclick="addLike('${app.id}', '${likeSpanId}')" alt="إعجاب">
-                            <a href="${app.link}" class="btn-download" download>
-                                <img src="https://images.icon-icons.com/1182/PNG/96/1490129349-rounded05_82190.png" alt="تحميل">
+                            <span class="count-val" id="${likeId}">${toFullWidth(0)}</span>
+                            <img src="https://images.icon-icons.com/3975/PNG/96/hand_favorite_like_thumbs_up_icon_251893.png" class="like-btn" onclick="addLike('${app.id}', '${likeId}')">
+                            <span class="count-val" id="${downId}">${toFullWidth(0)}</span>
+                            <a href="${app.link}" class="btn-download" onclick="addDownload('${app.id}', '${downId}')" download>
+                                <img src="https://images.icon-icons.com/1182/PNG/96/1490129349-rounded05_82190.png">
                             </a>
                         </div>
                         ${app.code ? `
                         <div class="cod-container">
                             <span>COD : ${app.code}</span>
-                            <div class="copy-wrapper">
-                                <div class="copy-glow"></div>
-                                <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ" style="filter: invert(1);">
-                            </div>
+                            <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" style="filter: invert(1);">
                         </div>` : ''}
                     </div>`;
-                    loadLikes(app.id, likeSpanId);
+                    loadStats(app.id, likeId, downId);
                 });
             });
 
-        function addLike(id, elementId) {
-            const lastLike = localStorage.getItem('like_' + id);
-            const now = new Date().getTime();
-
-            if (lastLike && (now - lastLike < 86400000)) {
-                alert("لقد قمت بالإعجاب بهذا العنصر بالفعل، يمكنك الإعجاب مجدداً بعد 24 ساعة.");
-                return;
-            }
-
-            fetch(`${FIREBASE_URL}items/${id}/likes.json`)
+        function addLike(id, elId) {
+            fetch(`${FIREBASE_URL}items/${id}/likes/count.json`)
                 .then(res => res.json())
-                .then(data => {
-                    let currentCount = data ? (data.count || 0) : 0;
-                    let newCount = currentCount + 1;
-                    fetch(`${FIREBASE_URL}items/${id}/likes.json`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ count: newCount })
-                    }).then(() => {
-                        document.getElementById(elementId).innerText = toFullWidth(newCount);
-                        localStorage.setItem('like_' + id, now);
-                        alert("شكراً لك! تم تسجيل إعجابك.");
-                    });
+                .then(c => {
+                    let n = (c || 0) + 1;
+                    fetch(`${FIREBASE_URL}items/${id}/likes/count.json`, {method:'PUT', body: JSON.stringify(n)})
+                    .then(() => document.getElementById(elId).innerText = toFullWidth(n));
+                });
+        }
+
+        function addDownload(id, elId) {
+            fetch(`${FIREBASE_URL}items/${id}/downloads/count.json`)
+                .then(res => res.json())
+                .then(c => {
+                    let n = (c || 0) + 1;
+                    fetch(`${FIREBASE_URL}items/${id}/downloads/count.json`, {method:'PUT', body: JSON.stringify(n)})
+                    .then(() => document.getElementById(elId).innerText = toFullWidth(n));
                 });
         }
 
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("تم نسخ الكود: " + text);
-            });
+            navigator.clipboard.writeText(text).then(() => alert("تم النسخ: " + text));
         }
     </script>
 </body>
-</html>
+        </html>
+        
