@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 
     <style>
         /* ستايل الشاشة الترحيبية */
@@ -34,7 +34,6 @@
         }
         .welcome-text b { color: #ffd700; } 
         
-        /* تنسيق صورة العنوان مصغرة */
         .welcome-title-img {
             max-width: 70%;
             height: auto;
@@ -44,7 +43,6 @@
             margin-right: auto;
         }
 
-        /* زر البدء بدون إطار */
         .start-btn { 
             margin-top: 20px; 
             background: transparent; 
@@ -97,7 +95,8 @@
         .app-icon { width: 1024px; height: 1024px; max-width: 200px; max-height: 200px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
-        .app-details h3 { font-size: 1.1rem; margin-bottom: 15px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+        /* تعديل الخط واللون لأسماء القلتشات */
+        .app-details h3 { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; margin-bottom: 15px; color: #00ff00; letter-spacing: 1px; }
         
         .actions-container { display: flex; align-items: center; gap: 20px; margin-bottom: 10px; }
         
@@ -113,8 +112,6 @@
         .copy-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
         .copy-btn { width: 24px; height: 24px; cursor: pointer; position: relative; z-index: 2; }
         .copy-glow { position: absolute; width: 35px; height: 35px; background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(0,0,0,0) 70%); z-index: 1; }
-        
-        .app-desc { display: none; }
         
         .btn-download { 
             width: 32px;
@@ -251,4 +248,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+    
