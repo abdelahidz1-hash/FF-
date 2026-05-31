@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@250;300;700&display=swap" rel="stylesheet">
 
     <style>
         /* ستايل الشاشة الترحيبية */
@@ -95,7 +95,9 @@
         .app-icon { width: 150px; height: 150px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         
-        .app-details h3 { font-size: 1.1rem; margin-bottom: 15px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+        .app-details h3 { font-size: 1.1rem; margin-bottom: 5px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+        /* وصف القلتش */
+        .app-description { font-size: 0.85rem; color: #ccc; margin-bottom: 15px; font-weight: 250; }
         
         .actions-container { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
         
@@ -158,7 +160,10 @@
                     container.innerHTML += `
                     <div class="app-card">
                         <div class="app-icon"><img src="${app.icon}" alt=""></div>
-                        <div class="app-details"><h3>${app.name}</h3></div>
+                        <div class="app-details">
+                            <h3>${app.name}</h3>
+                            <p class="app-description">${app.description || ''}</p>
+                        </div>
                         <div class="actions-container">
                             <a href="${app.link}" class="btn-download" download>
                                 <img src="https://images.icon-icons.com/1182/PNG/96/1490129349-rounded05_82190.png" alt="تحميل">
