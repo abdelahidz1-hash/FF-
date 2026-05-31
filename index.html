@@ -80,10 +80,10 @@
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 15px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
         
-        /* حاوية الأزرار الجديدة */
         .actions-container { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
         
-        .like-btn { width: 32px; height: 32px; cursor: pointer; filter: invert(1); }
+        .like-btn { width: 32px; height: 32px; cursor: pointer; filter: invert(1); transition: transform 0.2s; }
+        .like-btn:active { transform: scale(1.2); }
         
         .cod-container { 
             display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
@@ -154,6 +154,8 @@
     </div>
 
     <script>
+        const FIREBASE_URL = "https://glitch-ff-4c081-default-rtdb.firebaseio.com/";
+
         fetch('items.json')
             .then(response => response.json())
             .then(data => {
@@ -169,7 +171,7 @@
                             <h3>${app.name}</h3>
                         </div>
                         <div class="actions-container">
-                            <img src="https://images.icon-icons.com/3523/PNG/96/user_interface_hand_gesture_like_ui_thumbsup_icon_221209.png" class="like-btn" alt="إعجاب">
+                            <img src="https://images.icon-icons.com/3523/PNG/96/user_interface_hand_gesture_like_ui_thumbsup_icon_221209.png" class="like-btn" onclick="addLike('${app.id}')" alt="إعجاب">
                             <a href="${app.link}" class="btn-download" download>
                                 <img src="https://images.icon-icons.com/1946/PNG/96/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" alt="تحميل">
                             </a>
@@ -187,6 +189,15 @@
                 });
             })
             .catch(error => console.error('Error loading JSON:', error));
+
+        function addLike(id) {
+            fetch(`${FIREBASE_URL}items/${id}/likes.json`, {
+                method: 'PATCH',
+                body: JSON.stringify({ count: 1 })
+            }).then(() => {
+                alert("شكراً لك! تم تسجيل الإعجاب.");
+            }).catch(err => console.error(err));
+        }
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
