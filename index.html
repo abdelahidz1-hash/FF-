@@ -14,27 +14,57 @@
         #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; text-align: center; }
         
         .welcome-banner { 
-            background: linear-gradient(135deg, #ff0000, #ffff00); 
-            border: 3px solid #333; 
-            border-radius: 20px; 
+            background: #000; 
+            border: 2px solid transparent;
+            border-radius: 20px;
+            background-image: linear-gradient(#000, #000), linear-gradient(45deg, #ffd700, #e0e0e0, #ffffff);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
             padding: 20px; 
             max-width: 400px; 
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4); 
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.2);
         }
-        .welcome-text { color: #000; font-size: 0.9rem; line-height: 1.5; text-align: justify; font-weight: bold; }
-        .welcome-text b { color: #000; } 
+        
+        .welcome-text { 
+            color: #fff; 
+            font-size: 0.9rem; 
+            line-height: 1.5; 
+            text-align: justify; 
+            font-weight: 280; 
+        }
+        .welcome-text b { color: #ffd700; } 
         
         .welcome-title {
             font-family: 'Cairo', sans-serif;
-            font-weight: 700;
-            font-size: 1.6rem;
+            font-weight: 300;
+            font-size: 1.8rem;
             margin-bottom: 15px;
-            color: #000;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            background: linear-gradient(90deg, #ffd700, #e0e0e0, #ffffff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
             text-align: center;
+            letter-spacing: 2px;
         }
 
-        .start-btn { margin-top: 20px; padding: 8px 25px; background: #000; color: #fff; border: 1px solid #fff; border-radius: 25px; font-weight: bold; display: inline-block; font-size: 0.9rem; cursor: pointer; }
+        /* زر البدء بحجم أصغر وخط Cairo بوزن 300 */
+        .start-btn { 
+            margin-top: 20px; 
+            padding: 6px 20px; 
+            background: #000; 
+            color: #00ff00; 
+            border: 1px solid #00ff00; 
+            border-radius: 20px; 
+            font-family: 'Cairo', sans-serif;
+            font-weight: 300;
+            display: inline-block; 
+            font-size: 0.9rem; 
+            cursor: pointer; 
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transition: 0.3s;
+        }
+        .start-btn:hover { background: #00ff00; color: #000; }
         
         .check-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
         .danger-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
@@ -153,7 +183,6 @@
     <script>
         const FIREBASE_URL = "https://glitch-ff-4c081-default-rtdb.firebaseio.com/";
 
-        // دالة لتحويل الأرقام إلى Fullwidth
         function toFullWidth(num) {
             return num.toString().replace(/[0-9]/g, (s) => String.fromCharCode(s.charCodeAt(0) + 0xFEE0));
         }
