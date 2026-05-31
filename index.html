@@ -128,5 +128,33 @@
                 </center>
                 هل تبحث عن سكنات أو رقصات أو أسلحة أو تصاميم...الخ لحسابك في Free Fire؟ أهلاً بك في منصتك الموثوقة.<br><br>
                 نقدم لك في GLITCH SKIN FF مجموعة مختارة تم تصميمها واختبارها بعناية فائقة لتضمن لك:<br>
-                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ:</b> قلتشات مدر
-                
+                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ:</b> قلتشات مدروسة ومجربة.<br>
+                <img src="https://images.icon-icons.com/4089/PNG/96/money_education_laboratory_planet_finance_launch_missile_startup_spaceship_business_science_astronomy_spacecraft_space_rocket_icon_259588.png" class="rocket-icon"> <b>تجربة سلسة:</b> تصاميم خفيفة.<br>
+                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>مضمونة:</b> نحن نهتم بسلامة حسابك.<br><br>
+                <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة:</b> جرب أي قلتش على حساب احتياطي.<br>
+            </div>
+            <button class="start-btn" onclick="document.getElementById('welcome-screen').style.display='none'">
+                <img src="https://i.ibb.co/hJ06Xg1z/Picsart-26-05-31-10-35-20-165.png" style="width: 37px; height: auto; display: block;">
+            </button>
+        </div>
+    </div>
+
+    <header>
+        <h1>GLITCH FREE FIRE</h1>
+    </header>
+
+    <div class="container">
+        <div class="apps-grid" id="apps-container"></div>
+        <p class="update-notice">سوف يتم تحديث قلتشات تلقائيا</p>
+    </div>
+
+    <script>
+        fetch('items.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('apps-container');
+                container.innerHTML = '';
+                data.forEach(app => {
+                    container.innerHTML += `
+                    <div class="app
+        
