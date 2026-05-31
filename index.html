@@ -34,37 +34,26 @@
         }
         .welcome-text b { color: #ffd700; } 
         
-        .welcome-title {
-            font-family: 'Cairo', sans-serif;
-            font-weight: 300;
-            font-size: 1.8rem;
+        /* تنسيق صورة العنوان مصغرة */
+        .welcome-title-img {
+            max-width: 70%;
+            height: auto;
             margin-bottom: 15px;
-            background: linear-gradient(90deg, #ffd700, #e0e0e0, #ffffff, #ffd700);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-            text-align: center;
-            letter-spacing: 2px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* زر البدء بحجم أصغر وخط Cairo بوزن 300 */
+        /* زر البدء بدون إطار */
         .start-btn { 
             margin-top: 20px; 
-            padding: 6px 20px; 
-            background: #000; 
-            color: #00ff00; 
-            border: 1px solid #00ff00; 
-            border-radius: 20px; 
-            font-family: 'Cairo', sans-serif;
-            font-weight: 300;
-            display: inline-block; 
-            font-size: 0.9rem; 
+            background: transparent; 
+            border: none; 
             cursor: pointer; 
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
             transition: 0.3s;
+            display: inline-block;
         }
-        .start-btn:hover { background: #00ff00; color: #000; }
+        .start-btn:active { transform: scale(0.95); }
         
         .check-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
         .danger-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
@@ -153,11 +142,12 @@
 
     <div id="welcome-screen" onclick="event.stopPropagation()">
         <div class="welcome-banner">
-            <div class="welcome-title">GLITCH SKIN FF</div>
+            <img src="https://i.ibb.co/qFmGS4Sp/Picsart-26-05-31-10-21-22-114.png" alt="GLITCH SKIN FF" class="welcome-title-img">
+            
             <div class="welcome-text">
                 <center style="display: flex; justify-content: center; gap: 5px; margin-bottom: 10px;">
                     <img src="https://i.ibb.co/MDrvqgCc/Picsart-26-05-28-22-03-09-928.png" style="width: 50px;">
-                    <img src="https://i.ibb.co/RTTzmNJc/Picsart-26-05-28-22-18-02-445.png" style="width: 50px;">
+                    <img src="https://i.ibb.co/RTTzmNJc/Picsart-26-05-31-10-21-22-114.png" style="width: 50px;">
                     <img src="https://i.ibb.co/WWTn1304/Picsart-26-05-28-22-27-13-388.png" style="width: 50px;">
                 </center>
                 هل تبحث عن سكنات أو رقصات أو أسلحة أو تصاميم...الخ لحسابك في Free Fire؟ أهلاً بك في منصتك الموثوقة.<br><br>
@@ -167,7 +157,9 @@
                 <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>مضمونة:</b> نحن نهتم بسلامة حسابك.<br><br>
                 <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة:</b> جرب أي قلتش على حساب احتياطي.<br>
             </div>
-            <div class="start-btn" onclick="document.getElementById('welcome-screen').style.display='none'">ابدأ التجربة الآن</div>
+            <button class="start-btn" onclick="document.getElementById('welcome-screen').style.display='none'">
+                <img src="https://i.ibb.co/hJ06Xg1z/Picsart-26-05-31-10-35-20-165.png" style="width: 37px; height: auto; display: block;">
+            </button>
         </div>
     </div>
 
