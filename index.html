@@ -99,10 +99,6 @@
         
         .actions-container { display: flex; align-items: center; gap: 20px; margin-bottom: 10px; }
         
-        .like-btn { width: 32px; height: 32px; cursor: pointer; filter: invert(1); transition: transform 0.2s; }
-        .like-btn:active { transform: scale(1.2); }
-        .like-count { font-size: 1rem; font-weight: bold; color: #fff; min-width: 20px; }
-        
         .cod-container { 
             display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
             border: 1px solid #333;
@@ -132,103 +128,5 @@
                 </center>
                 هل تبحث عن سكنات أو رقصات أو أسلحة أو تصاميم...الخ لحسابك في Free Fire؟ أهلاً بك في منصتك الموثوقة.<br><br>
                 نقدم لك في GLITCH SKIN FF مجموعة مختارة تم تصميمها واختبارها بعناية فائقة لتضمن لك:<br>
-                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ:</b> قلتشات مدروسة ومجربة.<br>
-                <img src="https://images.icon-icons.com/4089/PNG/96/money_education_laboratory_planet_finance_launch_missile_startup_spaceship_business_science_astronomy_spacecraft_space_rocket_icon_259588.png" class="rocket-icon"> <b>تجربة سلسة:</b> تصاميم خفيفة.<br>
-                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>مضمونة:</b> نحن نهتم بسلامة حسابك.<br><br>
-                <img src="https://images.icon-icons.com/2941/PNG/96/danger_triangle_icon_183758.png" class="danger-icon"> <b>نصيحة:</b> جرب أي قلتش على حساب احتياطي.<br>
-            </div>
-            <button class="start-btn" onclick="document.getElementById('welcome-screen').style.display='none'">
-                <img src="https://i.ibb.co/hJ06Xg1z/Picsart-26-05-31-10-35-20-165.png" style="width: 37px; height: auto; display: block;">
-            </button>
-        </div>
-    </div>
-
-    <header>
-        <h1>GLITCH FREE FIRE</h1>
-    </header>
-
-    <div class="container">
-        <div class="apps-grid" id="apps-container"></div>
-        <p class="update-notice">سوف يتم تحديث قلتشات تلقائيا</p>
-    </div>
-
-    <script>
-        const FIREBASE_URL = "https://glitch-ff-4c081-default-rtdb.firebaseio.com/";
-
-        function toFullWidth(num) {
-            return num.toString().replace(/[0-9]/g, (s) => String.fromCharCode(s.charCodeAt(0) + 0xFEE0));
-        }
-
-        function loadLikes(id, elementId) {
-            fetch(`${FIREBASE_URL}likes/${id}.json`)
-                .then(res => res.json())
-                .then(data => {
-                    const count = data ? (data.count || 0) : 0;
-                    document.getElementById(elementId).innerText = toFullWidth(count);
-                });
-        }
-
-        fetch('items.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('apps-container');
-                container.innerHTML = '';
-                data.forEach(app => {
-                    const likeSpanId = `like-count-${app.id}`;
-                    container.innerHTML += `
-                    <div class="app-card">
-                        <div class="app-icon"><img src="${app.icon}" alt=""></div>
-                        <div class="app-details"><h3>${app.name}</h3></div>
-                        <div class="actions-container">
-                            <span class="like-count" id="${likeSpanId}">${toFullWidth(0)}</span>
-                            <img src="https://images.icon-icons.com/3975/PNG/96/hand_favorite_like_thumbs_up_icon_251893.png" class="like-btn" onclick="addLike('${app.id}', '${likeSpanId}')" alt="إعجاب">
-                            <a href="${app.link}" class="btn-download" download>
-                                <img src="https://images.icon-icons.com/1182/PNG/96/1490129349-rounded05_82190.png" alt="تحميل">
-                            </a>
-                        </div>
-                        ${app.code ? `
-                        <div class="cod-container">
-                            <span>COD : ${app.code}</span>
-                            <div class="copy-wrapper">
-                                <div class="copy-glow"></div>
-                                <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ" style="filter: invert(1);">
-                            </div>
-                        </div>` : ''}
-                    </div>`;
-                    loadLikes(app.id, likeSpanId);
-                });
-            });
-
-        function addLike(id, elementId) {
-            const storageKey = 'like_' + id;
-            if (localStorage.getItem(storageKey)) {
-                alert("لقد قمت بالإعجاب بهذا العنصر بالفعل.");
-                return;
-            }
-
-            fetch(`${FIREBASE_URL}likes/${id}.json`)
-                .then(res => res.json())
-                .then(data => {
-                    let currentCount = data ? (data.count || 0) : 0;
-                    let newCount = currentCount + 1;
-                    
-                    fetch(`${FIREBASE_URL}likes/${id}.json`, {
-                        method: 'PUT',
-                        body: JSON.stringify({ count: newCount })
-                    }).then(() => {
-                        document.getElementById(elementId).innerText = toFullWidth(newCount);
-                        localStorage.setItem(storageKey, 'true');
-                        alert("شكراً لك! تم تسجيل إعجابك.");
-                    });
-                });
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("تم نسخ الكود: " + text);
-            });
-        }
-    </script>
-</body>
-    </html>
-    
+                <img src="https://images.icon-icons.com/1206/PNG/96/1491254409-truecheckacceptapprove_82933.png" class="check-icon"> <b>أمان عالٍ:</b> قلتشات مدر
+                
