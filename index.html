@@ -80,8 +80,9 @@
         
         .app-details h3 { font-size: 1.1rem; margin-bottom: 5px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
         
-        .like-icon { width: 28px; height: 28px; margin-bottom: 10px; cursor: pointer; filter: drop-shadow(0 0 5px #fff); }
-
+        /* تنسيق زر الإعجاب */
+        .like-btn { width: 28px; height: 28px; cursor: pointer; margin-bottom: 10px; filter: invert(1); }
+        
         .cod-container { 
             display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
             border: 1px solid #333;
@@ -168,7 +169,7 @@
                         </div>
                         <div class="app-details">
                             <h3>${app.name}</h3>
-                            <img src="https://images.icon-icons.com/1659/PNG/96/3844426-approve-hand-like-thumb-up_110323.png" class="like-icon" alt="إعجاب">
+                            <img src="https://images.icon-icons.com/3523/PNG/96/user_interface_hand_gesture_like_ui_thumbsup_icon_221209.png" class="like-btn" alt="إعجاب">
                         </div>
                         ${app.code ? `
                         <div class="cod-container">
