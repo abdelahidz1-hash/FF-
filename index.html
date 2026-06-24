@@ -25,104 +25,48 @@
             box-shadow: 0 0 20px rgba(255, 69, 0, 0.4), 0 0 10px rgba(255, 215, 0, 0.2);
         }
         
-        .welcome-text { 
-            color: #fff; 
-            font-size: 0.9rem; 
-            line-height: 1.5; 
-            text-align: justify; 
-            font-weight: 280; 
-        }
+        .welcome-text { color: #fff; font-size: 0.9rem; line-height: 1.5; text-align: justify; font-weight: 280; }
         .welcome-text b { color: #ffd700; } 
         
-        .welcome-title-img {
-            max-width: 70%;
-            height: auto;
-            margin-bottom: 15px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .start-btn { 
-            margin-top: 20px; 
-            background: transparent; 
-            border: none; 
-            cursor: pointer; 
-            transition: 0.3s;
-            display: inline-block;
-        }
+        .welcome-title-img { max-width: 70%; height: auto; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto; }
+        .start-btn { margin-top: 20px; background: transparent; border: none; cursor: pointer; transition: 0.3s; display: inline-block; }
         .start-btn:active { transform: scale(0.95); }
         
-        .check-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
-        .danger-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
-        .rocket-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
+        .check-icon, .danger-icon, .rocket-icon { width: 14px; height: 14px; vertical-align: middle; margin-left: 5px; }
 
         :root { --card-bg: #0a0a0a; --text-color: #ffffff; }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; font-weight: 300; }
-        
-        body { 
-            background: #000000;
-            background-attachment: fixed;
-            color: var(--text-color); 
-            line-height: 1.6; 
-            padding-bottom: 60px; 
-        }
+        body { background: #000000; color: var(--text-color); padding-bottom: 60px; }
 
-        header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); z-index: 100; }
+        header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 100; }
         header h1 { font-size: 1rem; letter-spacing: 1px; color: #fff; font-weight: bold; }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        /* شريط البحث والتصنيفات */
+        .controls { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+        #search-input { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #333; background: #111; color: #fff; margin-bottom: 10px; }
+        .filter-btns { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
+        .filter-btn { background: #111; border: 1px solid #ff4500; color: #fff; padding: 5px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s; white-space: nowrap; }
+        .filter-btn.active { background: #ff4500; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         
-        .app-card { 
-            background: #0a0a0a; 
-            border: 2px solid transparent;
-            border-radius: 15px; 
-            background-clip: padding-box, border-box;
-            background-origin: padding-box, border-box;
-            /* تم تغيير تدرج الإطار إلى ألوان بركانية */
-            background-image: linear-gradient(#0a0a0a, #0a0a0a), linear-gradient(45deg, #ff0000, #ff4500, #ff8c00);
-            padding: 20px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-            transition: transform 0.2s, box-shadow 0.3s; 
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.2);
-        }
-        .app-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px rgba(255, 69, 0, 0.5); }
-        
+        .app-card { background: #0a0a0a; border: 2px solid transparent; border-radius: 15px; background-clip: padding-box, border-box; background-origin: padding-box, border-box; background-image: linear-gradient(#0a0a0a, #0a0a0a), linear-gradient(45deg, #ff0000, #ff4500, #ff8c00); padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.2s; box-shadow: 0 0 10px rgba(255, 69, 0, 0.2); }
         .app-icon { width: 150px; height: 150px; background: #0a0a0a; border-radius: 14px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; }
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .app-details h3 { font-size: 1.1rem; margin-bottom: 5px; color: #ff4500; text-shadow: 0 0 5px #ff4500; }
-        
-        .app-description { font-size: 0.85rem; color: #ccc; margin-bottom: 15px; font-weight: 250; }
-        
-        .actions-container { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-        
-        .cod-container { 
-            display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000000; padding: 10px; border-radius: 10px; 
-            border: 1px solid #333;
-        }
-        
-        .copy-wrapper { position: relative; display: flex; align-items: center; justify-content: center; }
-        .copy-btn { width: 24px; height: 24px; cursor: pointer; position: relative; z-index: 2; }
-        .copy-glow { position: absolute; width: 35px; height: 35px; background: radial-gradient(circle, rgba(255,69,0,0.3) 0%, rgba(0,0,0,0) 70%); z-index: 1; }
-        
-        .btn-download { width: 32px; height: 32px; text-decoration: none; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; }
-        .btn-download img { width: 32px; height: 32px; }
-        
-        .update-notice { text-align: center; font-size: 1.1rem; margin-top: 30px; font-weight: 300; color: #fff; text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500; }
+        .app-details h3 { font-size: 1.1rem; margin-bottom: 5px; color: #ff4500; }
+        .app-description { font-size: 0.85rem; color: #ccc; margin-bottom: 15px; }
+        .cod-container { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000; padding: 10px; border-radius: 10px; border: 1px solid #333; }
+        .copy-btn { width: 24px; height: 24px; cursor: pointer; filter: invert(1); }
+        .btn-download { width: 32px; height: 32px; }
+        .update-notice { text-align: center; font-size: 1.1rem; margin-top: 30px; color: #fff; text-shadow: 0 0 10px #ff4500; }
     </style>
 </head>
 <body>
 
-    <div id="welcome-screen" onclick="event.stopPropagation()">
+    <div id="welcome-screen">
         <div class="welcome-banner">
             <img src="https://i.ibb.co/Kp1Fw04j/Picsart-26-06-11-08-45-10-008.png" alt="GLITCH SKIN FF" class="welcome-title-img">
-            
             <div class="welcome-text">
                 <center style="display: flex; justify-content: center; gap: 5px; margin-bottom: 10px;">
                     <img src="https://i.ibb.co/MDrvqgCc/Picsart-26-05-28-22-03-09-928.png" style="width: 50px;">
@@ -142,9 +86,17 @@
         </div>
     </div>
 
-    <header>
-        <h1>GLITCH FREE FIRE</h1>
-    </header>
+    <header><h1>GLITCH FREE FIRE</h1></header>
+
+    <div class="controls">
+        <input type="text" id="search-input" placeholder="ابحث عن اسم السكن أو السلاح..." onkeyup="filterContent()">
+        <div class="filter-btns">
+            <button class="filter-btn active" onclick="setFilter('الكل', this)">الكل</button>
+            <button class="filter-btn" onclick="setFilter('سكنات', this)">سكنات</button>
+            <button class="filter-btn" onclick="setFilter('رقصات', this)">رقصات</button>
+            <button class="filter-btn" onclick="setFilter('أسلحة', this)">أسلحة</button>
+        </div>
+    </div>
 
     <div class="container">
         <div class="apps-grid" id="apps-container"></div>
@@ -152,41 +104,62 @@
     </div>
 
     <script>
+        let allItems = [];
+        let currentCategory = 'الكل';
+
         fetch('items.json')
             .then(response => response.json())
             .then(data => {
-                const container = document.getElementById('apps-container');
-                container.innerHTML = '';
-                data.forEach(app => {
-                    container.innerHTML += `
-                    <div class="app-card">
-                        <div class="app-icon"><img src="${app.icon}" alt=""></div>
-                        <div class="app-details">
-                            <h3>${app.name}</h3>
-                            <p class="app-description">${app.description || ''}</p>
-                        </div>
-                        <div class="actions-container">
-                            <a href="${app.link}" class="btn-download" download>
-                                <img src="https://images.icon-icons.com/1182/PNG/96/1490129349-rounded05_82190.png" alt="تحميل">
-                            </a>
-                        </div>
-                        ${app.code ? `
-                        <div class="cod-container">
-                            <span>COD : ${app.code}</span>
-                            <div class="copy-wrapper">
-                                <div class="copy-glow"></div>
-                                <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')" alt="نسخ" style="filter: invert(1);">
-                            </div>
-                        </div>` : ''}
-                    </div>`;
-                });
+                allItems = data;
+                renderItems(allItems);
             });
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("تم نسخ الكود: " + text);
+        function renderItems(items) {
+            const container = document.getElementById('apps-container');
+            container.innerHTML = '';
+            items.forEach(app => {
+                container.innerHTML += `
+                <div class="app-card">
+                    <div class="app-icon"><img src="${app.icon}" alt=""></div>
+                    <div class="app-details">
+                        <h3>${app.name}</h3>
+                        <p class="app-description">${app.description || ''}</p>
+                    </div>
+                    <div class="actions-container">
+                        <a href="${app.link}" class="btn-download" download>
+                            <img src="https://images.icon-icons.com/1182/PNG/96/1490129349-rounded05_82190.png" alt="تحميل">
+                        </a>
+                    </div>
+                    ${app.code ? `
+                    <div class="cod-container">
+                        <span>COD : ${app.code}</span>
+                        <img src="https://images.icon-icons.com/935/PNG/96/copy-two-paper-sheets-interface-symbol_icon-icons.com_73283.png" class="copy-btn" onclick="copyToClipboard('${app.code}')">
+                    </div>` : ''}
+                </div>`;
             });
+        }
+
+        function setFilter(category, btn) {
+            currentCategory = category;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterContent();
+        }
+
+        function filterContent() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const filtered = allItems.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchTerm);
+                const matchesCategory = currentCategory === 'الكل' || item.category === currentCategory;
+                return matchesSearch && matchesCategory;
+            });
+            renderItems(filtered);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => alert("تم نسخ الكود: " + text));
         }
     </script>
 </body>
-</html>
+    </html>
+    
