@@ -41,12 +41,9 @@
         header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 100; }
         header h1 { font-size: 1rem; letter-spacing: 1px; color: #fff; font-weight: bold; }
         
-        /* شريط البحث والتصنيفات */
+        /* شريط البحث */
         .controls { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
         #search-input { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #333; background: #111; color: #fff; margin-bottom: 10px; }
-        .filter-btns { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
-        .filter-btn { background: #111; border: 1px solid #ff4500; color: #fff; padding: 5px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s; white-space: nowrap; }
-        .filter-btn.active { background: #ff4500; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
@@ -94,12 +91,6 @@
 
     <div class="controls">
         <input type="text" id="search-input" placeholder="ابحث عن اسم السكن أو السلاح..." onkeyup="filterContent()">
-        <div class="filter-btns">
-            <button class="filter-btn active" onclick="setFilter('الكل', this)">الكل</button>
-            <button class="filter-btn" onclick="setFilter('سكنات', this)">سكنات</button>
-            <button class="filter-btn" onclick="setFilter('رقصات', this)">رقصات</button>
-            <button class="filter-btn" onclick="setFilter('أسلحة', this)">أسلحة</button>
-        </div>
     </div>
 
     <div class="container">
@@ -109,7 +100,6 @@
 
     <script>
         let allItems = [];
-        let currentCategory = 'الكل';
 
         fetch('items.json')
             .then(response => response.json())
@@ -143,19 +133,10 @@
             });
         }
 
-        function setFilter(category, btn) {
-            currentCategory = category;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterContent();
-        }
-
         function filterContent() {
             const searchTerm = document.getElementById('search-input').value.toLowerCase();
             const filtered = allItems.filter(item => {
-                const matchesSearch = item.name.toLowerCase().includes(searchTerm);
-                const matchesCategory = currentCategory === 'الكل' || item.category === currentCategory;
-                return matchesSearch && matchesCategory;
+                return item.name.toLowerCase().includes(searchTerm);
             });
             renderItems(filtered);
         }
@@ -165,5 +146,4 @@
         }
     </script>
 </body>
-    </html>
-                    
+</html>
