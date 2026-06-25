@@ -41,6 +41,7 @@
         header { display: flex; justify-content: center; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 100; }
         header h1 { font-size: 1rem; letter-spacing: 1px; color: #fff; font-weight: bold; }
         
+        /* شريط البحث */
         .controls { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
         #search-input { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #333; background: #111; color: #fff; margin-bottom: 10px; }
 
@@ -52,13 +53,12 @@
         .app-icon img { width: 100%; height: 100%; object-fit: cover; }
         .app-details h3 { font-size: 1.1rem; margin-bottom: 5px; color: #ff4500; }
         .app-description { font-size: 0.85rem; color: #ccc; margin-bottom: 15px; }
-        
-        .actions-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
         .cod-container { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 5px 0 15px 0; color: #ffffff; font-weight: bold; font-size: 0.9rem; background: #000; padding: 10px; border-radius: 10px; border: 1px solid #333; }
         .copy-btn { width: 24px; height: 24px; cursor: pointer; filter: invert(1); }
+        
+        /* تعديل حجم زر التحميل */
         .btn-download { width: 32px; height: 32px; text-decoration: none; display: flex; align-items: center; justify-content: center; }
         .btn-download img { width: 32px; height: 32px; }
-        .top-badge { width: 30px; height: 30px; }
         
         .update-notice { text-align: center; font-size: 1.1rem; margin-top: 30px; color: #fff; text-shadow: 0 0 10px #ff4500; }
     </style>
@@ -100,28 +100,15 @@
 
     <script>
         let allItems = [];
-        let downloadCounts = {};
-        const FIREBASE_URL = "https://glitch-ff-4c081-default-rtdb.firebaseio.com/downloads.json";
 
-        async function fetchData() {
-            const response = await fetch('items.json');
-            allItems = await response.json();
-            const countsResponse = await fetch(FIREBASE_URL);
-            downloadCounts = await countsResponse.json() || {};
-            
-            // تحديد الأكثر تحميلاً
-            let maxCount = 0;
-            let topId = null;
-            for (const id in downloadCounts) {
-                if (downloadCounts[id] > maxCount) {
-                    maxCount = downloadCounts[id];
-                    topId = id;
-                }
-            }
-            renderItems(allItems, topId);
-        }
+        fetch('items.json')
+            .then(response => response.json())
+            .then(data => {
+                allItems = data;
+                renderItems(allItems);
+            });
 
-        function renderItems(items, topId) {
+        function renderItems(items) {
             const container = document.getElementById('apps-container');
             container.innerHTML = '';
             items.forEach(app => {
@@ -132,9 +119,8 @@
                         <h3>${app.name}</h3>
                         <p class="app-description">${app.description || ''}</p>
                     </div>
-                    <div class="actions-wrapper">
-                        ${app.id == topId ? `<img src="https://i.ibb.co/WWk9L8YN/Picsart-26-05-31-10-35-20-165.png" class="top-badge">` : ''}
-                        <a href="${app.link}" class="btn-download" download onclick="incrementDownload('${app.id}')">
+                    <div class="actions-container">
+                        <a href="${app.link}" class="btn-download" download>
                             <img src="https://images.icon-icons.com/1182/PNG/96/1490129349-rounded05_82190.png" alt="تحميل">
                         </a>
                     </div>
@@ -147,24 +133,18 @@
             });
         }
 
-        function incrementDownload(id) {
-            fetch(`${FIREBASE_URL.replace('.json', '')}/${id}/count.json`, {
-                method: 'PUT',
-                body: JSON.stringify((downloadCounts[id] || 0) + 1)
-            });
-        }
-
         function filterContent() {
             const searchTerm = document.getElementById('search-input').value.toLowerCase();
-            const filtered = allItems.filter(item => item.name.toLowerCase().includes(searchTerm));
+            const filtered = allItems.filter(item => {
+                return item.name.toLowerCase().includes(searchTerm);
+            });
             renderItems(filtered);
         }
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => alert("تم نسخ الكود: " + text));
         }
-
-        fetchData();
     </script>
 </body>
-</html>
+        </html>
+        
