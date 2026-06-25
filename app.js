@@ -37,3 +37,4 @@ async function loadFreeFireItems() {
 
 // تشغيل الدالة تلقائياً بمجرد تحميل الصفحة بالكامل
 document.addEventListener('DOMContentLoaded', loadFreeFireItems);
+                  
