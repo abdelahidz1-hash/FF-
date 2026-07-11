@@ -93,7 +93,6 @@
             const container = document.getElementById('apps-container');
             container.innerHTML = '';
             items.forEach((app, index) => {
-                // تحديد لون الحالة: أخضر لـ active، أصفر لغير ذلك (Needs Update)
                 const statusColor = (app.status === 'active') ? '#00ff00' : '#ffd700';
                 
                 container.innerHTML += `
@@ -151,5 +150,4 @@
         }
     </script>
 </body>
-    </html>
-    
+</html>
